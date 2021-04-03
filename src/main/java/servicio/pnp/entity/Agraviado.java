@@ -65,6 +65,9 @@ public class Agraviado {
     por ejemplo si es un Adulto Mayor, Niño, Niña, Enfermo Mental, Población LGTBI, Discapacitado, etc*/
     private InformacionAdicional informacionAdicional;
 
+    @Column(length = 500)
+    private String direccionAgraviado;
+
     public int getId() {
         return id;
     }

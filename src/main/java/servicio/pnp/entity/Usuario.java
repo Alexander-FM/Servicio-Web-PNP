@@ -60,6 +60,9 @@ public class Usuario {
     @OneToOne
     private Distrito distrito;
 
+    @Column(length = 500)
+    private String direccion;
+
     public int getId() {
         return id;
     }

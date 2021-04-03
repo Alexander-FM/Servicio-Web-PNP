@@ -21,4 +21,9 @@ public class DistritoService {
                 RPTA_OK,
                 OPERACION_CORRECTA, this.repository.findAll());
     }
+    public GenericResponse list() {
+        return new GenericResponse(TIPO_RESULT,
+                RPTA_OK,
+                OPERACION_CORRECTA, this.repository.list());
+    }
 }

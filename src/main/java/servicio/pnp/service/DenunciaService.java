@@ -149,4 +149,7 @@ public class DenunciaService {
         }
         return data;
     }
+    public GenericResponse save(Denuncia d) {
+        return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(d));
+    }
 }

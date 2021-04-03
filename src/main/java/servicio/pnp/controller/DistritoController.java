@@ -18,4 +18,8 @@ public class DistritoController {
     public GenericResponse listAll(){
         return this.service.listAll();
     }
+    @GetMapping
+    public GenericResponse list(){
+        return this.service.list();
+    }
 }

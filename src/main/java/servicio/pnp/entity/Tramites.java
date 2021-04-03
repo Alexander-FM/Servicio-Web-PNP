@@ -10,15 +10,13 @@ public class Tramites {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     /*--------------------------------------*/
-    @NotBlank(message = "Debe ingresar un código de trámite")
     @Column(length = 6)
     private String codTramite;/*Una vez ingresado el trámite la mayor dará el cod-trámite por correo del usuario*/
     /*--------------------------------------*/
-    @NotBlank(message = "Debe ingresar la fecha de denuncia")
     @Column(nullable = false)
     private Date fechaDenuncia;/*Se rellenará automaticamente*/
     /*--------------------------------------*/
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     private TipoTramite tipoTramite;/*El usuario selecciona el tipo de trámite.*/
     /*--------------------------------------*/
     @Column(nullable = false)

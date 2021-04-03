@@ -8,6 +8,7 @@ import servicio.pnp.service.DetalleDenunciaService;
 import servicio.pnp.utils.GenericResponse;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -53,4 +54,10 @@ public class DenunciaController {
     public GenericResponse<Map<String, Object>> reporteAnual() {
         return service.reporteAnual();
     }
+
+    @PostMapping
+    public GenericResponse save(@Valid @RequestBody Denuncia d) {
+        return this.service.save(d);
+    }
+
 }

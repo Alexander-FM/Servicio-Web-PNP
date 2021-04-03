@@ -1,14 +1,12 @@
 package servicio.pnp.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import servicio.pnp.entity.Usuario;
 import servicio.pnp.service.UsuarioService;
 import servicio.pnp.utils.GenericResponse;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 //@CrossOrigin(origins = "*",allowCredentials = "")
 @RequestMapping("api/usuario")
@@ -25,5 +23,9 @@ public class LoginController {
         String email = request.getParameter("email");
         String contrasenia = request.getParameter("contrasenia");
         return this.service.login(email,contrasenia);
+    }
+    @PostMapping
+    public GenericResponse<Usuario> save(@Valid @RequestBody Usuario u) {
+        return this.service.save(u);
     }
 }

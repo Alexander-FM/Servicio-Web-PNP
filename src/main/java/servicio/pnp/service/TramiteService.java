@@ -2,6 +2,8 @@ package servicio.pnp.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import servicio.pnp.entity.TipoDenuncia;
+import servicio.pnp.entity.TipoTramite;
 import servicio.pnp.entity.Tramites;
 import servicio.pnp.repository.TramitesRepository;
 import servicio.pnp.utils.GenericResponse;
@@ -33,6 +35,46 @@ public class TramiteService {
 
     public GenericResponse<Iterable<Tramites>> list() {
         return new GenericResponse<>(TIPO_DATA,RPTA_OK,OPERACION_CORRECTA,repository.findAll());
+    }
+
+    public GenericResponse saveTramite(Tramites tr) {
+        Optional<Tramites> opt = this.repository.findById(tr.getId());
+        int idf = opt.isPresent() ? opt.get().getId() : 0;
+        //NUEVO REGISTRO
+        if (idf == 0) {
+            if (repository.existsByName(tr.getCodTramite().trim()) == 1) {
+                //Se encontro un tipo denuncia con el mismo nombre
+                return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "Lo sentimos: " +
+                        "Ya existe un trámite con ese mismo código trámite");
+            } else {
+                //GUARDA
+                tr.setId(idf);
+                return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(tr));
+            }
+        } else {
+            if (repository.existByNameForUpdate(tr.getCodTramite().trim(), tr.getId()) == 1) {
+                //Se encontro un tipo denuncia con el mismo nombre
+                return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "Error: Ya existe un" +
+                        " trámite con ese mismo código de trámite, intente otra vez!");
+            } else {
+                //ACTUALIZA
+                tr.setId(idf);
+                return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(tr));
+            }
+        }
+    }
+
+    public GenericResponse find(int id) {
+        Optional<Tramites> opt = this.repository.findById(id);
+        if(opt.isPresent()){
+            return new GenericResponse(TIPO_RESULT,
+                    RPTA_OK,
+                    OPERACION_CORRECTA,opt.get());
+        }else{
+            return new GenericResponse(TIPO_RESULT,
+                    RPTA_WARNING,
+                    OPERACION_INCORRECTA, "El tipo de trámite no existe en la Base de Datos");
+        }
     }
 
     public List<Integer> reporteS(boolean semanaPasada) {
@@ -90,4 +132,10 @@ public class TramiteService {
         fi.add(Calendar.DAY_OF_YEAR, addI);
         ff.add(Calendar.DAY_OF_YEAR, addF);
     }
+
+    public GenericResponse<Tramites> save(Tramites t) {
+        return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(t));
+    }
+
+
 }
