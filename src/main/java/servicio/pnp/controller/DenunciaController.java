@@ -3,6 +3,7 @@ package servicio.pnp.controller;
 import org.springframework.web.bind.annotation.*;
 import servicio.pnp.entity.Denuncia;
 import servicio.pnp.entity.DetalleDenuncia;
+import servicio.pnp.entity.Tramites;
 import servicio.pnp.service.DenunciaService;
 import servicio.pnp.service.DetalleDenunciaService;
 import servicio.pnp.utils.GenericResponse;
@@ -58,6 +59,22 @@ public class DenunciaController {
     @PostMapping
     public GenericResponse save(@Valid @RequestBody Denuncia d) {
         return this.service.save(d);
+    }
+
+    @PostMapping("registrar")
+    public GenericResponse<Tramites> saveDenuncia(@Valid @RequestBody Denuncia d) {
+        return service.saveDenuncia(d);
+    }
+
+    @GetMapping("/{id}")
+    public GenericResponse find(@PathVariable int id) {
+        return this.service.find(id);
+    }
+
+    @PutMapping("/{id}")
+    public GenericResponse update(@PathVariable int id, @Valid @RequestBody Denuncia d) {
+        d.setId(id);
+        return this.service.saveDenuncia(d);
     }
 
 }

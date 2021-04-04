@@ -11,34 +11,31 @@ public class Denuncia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     /*----------------------------------------------------*/
-    @NotBlank(message = "Debe ingresar la fecha de denuncia")
     @Column(nullable = false)
     private Date fechaDenuncia;
+    /*---------------------------------------------------*/
+    @Column(length = 8)/*POR EJEMPLO: D-3423-P
+    S-> Sexual, P-> Psicológica, E-> Económica, F-> Familiar*/
+    private String cod_denuncia;
     /*-------------------------------------------------------*/
-    @NotBlank(message = "Debe ingresar su dirección de su casa")
     @Column(length = 500, nullable = false)
     private String direccion;
     /*-------------------------------------------------------*/
-    @NotBlank(message = "Debe ingresar una referencia de su casa")
     @Column(length = 500, nullable = false)
     private String referenciaDireccion;
     /*--------------------------------------------------------*/
-    @NotBlank(message = "No puede quedar vacio la fecha de hechos")
     @Column
     private Date fechaHechos;
     /*-----------------------------------------------------*/
     @Column
     private boolean estadoDenuncia;
     /*----------------------------------------------------*/
-    @NotEmpty(message = "Debe seleccionar el tipo de denuncia a realizar.")
     @OneToOne
     private TipoDenuncia tipoDenuncia;
     /*------------------------------------------------------*/
-    @NotEmpty(message = "Debe seleccionar el distrito dónde ocurrio")
     @OneToOne
     private Distrito distrito;
     /*------------------------------------------------------*/
-    @NotEmpty(message = "Especifíque el vínculo con la parte denunciada.")
     @OneToOne
     private VinculoParteDenunciada vinculoParteDenunciada;/*Por ejemplo: si es laboral, familiar, otro.
     lo considero como una tabla a parte para mas a futuro no hacer la base de datos más pesada.*/
@@ -127,7 +124,11 @@ public class Denuncia {
         this.vinculoParteDenunciada = vinculoParteDenunciada;
     }
 
+    public String getCod_denuncia() {
+        return cod_denuncia;
+    }
 
-
-
+    public void setCod_denuncia(String cod_denuncia) {
+        this.cod_denuncia = cod_denuncia;
+    }
 }

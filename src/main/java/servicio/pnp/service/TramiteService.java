@@ -73,7 +73,7 @@ public class TramiteService {
         }else{
             return new GenericResponse(TIPO_RESULT,
                     RPTA_WARNING,
-                    OPERACION_INCORRECTA, "El tipo de trámite no existe en la Base de Datos");
+                    OPERACION_INCORRECTA, "El Trámite no existe en la Base de Datos");
         }
     }
 

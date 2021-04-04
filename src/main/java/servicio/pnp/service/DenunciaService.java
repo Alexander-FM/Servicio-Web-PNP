@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import servicio.pnp.entity.Denuncia;
 import servicio.pnp.entity.TipoDenuncia;
+import servicio.pnp.entity.Tramites;
 import servicio.pnp.entity.VinculoParteDenunciada;
 import servicio.pnp.repository.DenunciaRepository;
 import servicio.pnp.repository.TipoDenunciaRepository;
@@ -151,5 +152,42 @@ public class DenunciaService {
     }
     public GenericResponse save(Denuncia d) {
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(d));
+    }
+
+    public GenericResponse saveDenuncia(Denuncia d) {
+        Optional<Denuncia> opt = this.repository.findById(d.getId());
+        int idf = opt.isPresent() ? opt.get().getId() : 0;
+        //NUEVO REGISTRO
+        if (idf == 0) {
+            if (repository.existsByName(d.getCod_denuncia().trim()) == 1) {
+                return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "Lo sentimos: " +
+                        "Ya existe una denuncia con ese mismo código denuncia");
+            } else {
+                d.setId(idf);
+                return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(d));
+            }
+        } else {
+            if (repository.existByNameForUpdate(d.getCod_denuncia().trim(), d.getId()) == 1) {
+                return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "Error: Ya existe una" +
+                        " denuncia con ese mismo código de denuncia, intente otra vez!");
+            } else {
+                //ACTUALIZA
+                d.setId(idf);
+                return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(d));
+            }
+        }
+    }
+
+    public GenericResponse find(int id) {
+        Optional<Denuncia> opt = this.repository.findById(id);
+        if(opt.isPresent()){
+            return new GenericResponse(TIPO_RESULT,
+                    RPTA_OK,
+                    OPERACION_CORRECTA,opt.get());
+        }else{
+            return new GenericResponse(TIPO_RESULT,
+                    RPTA_WARNING,
+                    OPERACION_INCORRECTA, "La Denuncia no existe en la Base de Datos");
+        }
     }
 }
