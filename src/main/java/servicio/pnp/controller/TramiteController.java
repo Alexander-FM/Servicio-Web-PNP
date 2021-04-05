@@ -1,6 +1,7 @@
 package servicio.pnp.controller;
 
 import org.springframework.web.bind.annotation.*;
+import servicio.pnp.entity.Denuncia;
 import servicio.pnp.entity.TipoTramite;
 import servicio.pnp.entity.Tramites;
 import servicio.pnp.service.TramiteService;
@@ -13,7 +14,7 @@ import java.util.Map;
 @RequestMapping("api/tramite")
 @RestController
 public class TramiteController {
-    private TramiteService service;
+    private final TramiteService service;
 
     public TramiteController(TramiteService service) {
         this.service = service;
@@ -48,6 +49,12 @@ public class TramiteController {
     public GenericResponse update(@PathVariable int id, @Valid @RequestBody Tramites tr) {
         tr.setId(id);
         return this.service.saveTramite(tr);
+    }
+
+    @GetMapping("reportefiltro")
+    public GenericResponse<Iterable<Tramites>> reporteFiltro(HttpServletRequest request) {
+        return service.generarReporteFiltroTramite(Integer.parseInt(request.getParameter("filtro")),
+                Integer.parseInt(request.getParameter("seleccion")), request.getParameter("fechaInicial"), request.getParameter("fechaFinal"));
     }
 
 }

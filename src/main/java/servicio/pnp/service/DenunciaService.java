@@ -107,6 +107,7 @@ public class DenunciaService {
                     break;
                 case 4:
                     denuncias = repository.findByEstado(seleccion);
+                    break;
             }
             if (!fechaRangoInicial.equals("") && !fechaRangoFinal.equals("")) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

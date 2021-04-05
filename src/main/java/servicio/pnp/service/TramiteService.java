@@ -2,12 +2,14 @@ package servicio.pnp.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import servicio.pnp.entity.Denuncia;
 import servicio.pnp.entity.TipoDenuncia;
 import servicio.pnp.entity.TipoTramite;
 import servicio.pnp.entity.Tramites;
 import servicio.pnp.repository.TramitesRepository;
 import servicio.pnp.utils.GenericResponse;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -20,7 +22,6 @@ import static servicio.pnp.utils.Global.*;
 @Transactional
 public class TramiteService {
     private final TramitesRepository repository;
-
 
     public TramiteService(TramitesRepository repository) {
         this.repository = repository;
@@ -135,6 +136,38 @@ public class TramiteService {
 
     public GenericResponse<Tramites> save(Tramites t) {
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(t));
+    }
+
+    public GenericResponse<Iterable<Tramites>> generarReporteFiltroTramite(int filtro, int seleccion, String fechaRangoInicial, String fechaRangoFinal) {
+        Iterable<Tramites> tramites = null;
+        try {
+            switch (filtro) {
+                case 1:
+                    tramites = repository.findByTipo(seleccion);
+                    break;
+                case 2:
+                    tramites = repository.findByPolicia(seleccion);
+                    break;
+                case 3:
+                    tramites = repository.findByEstado(seleccion);
+                    break;
+            }
+            if (!fechaRangoInicial.equals("") && !fechaRangoFinal.equals("")) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechaInicial = sdf.parse(fechaRangoInicial), fechaFinal = sdf.parse(fechaRangoFinal);
+                List<Tramites> tramitesFiltrados = new ArrayList<>();
+                for (Tramites d : tramites) {
+                    if (!d.getFechaDenuncia().before(fechaInicial) && !d.getFechaDenuncia().after(fechaFinal)) {
+                        tramitesFiltrados.add(d);
+                    }
+                }
+                return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, tramitesFiltrados);
+            }
+            return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, tramites);
+        } catch (Exception e) {
+            System.out.println("error al generar reporte:" + e.getMessage());
+        }
+        return null;
     }
 
 
