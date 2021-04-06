@@ -42,6 +42,10 @@ public class Denuncia {
     /*--------------------------------------------------*/
     @ManyToOne
     private Policia policia;
+/*
+    @Transient
+    private String nombreCompletoPolicia;
+    */
 
     public int getId() {
         return id;
@@ -130,5 +134,21 @@ public class Denuncia {
 
     public void setCod_denuncia(String cod_denuncia) {
         this.cod_denuncia = cod_denuncia;
+    }
+
+    public String getNombreCompletoPolicia() {
+        /*this.nombreCompletoPolicia = policia != null ? this.policia.getNombres() + " " + this.policia.getApellidos() : " - - - ";
+        return nombreCompletoPolicia;*/
+        return this.policia != null ? this.policia.getNombres() + " " + this.policia.getApellidos() : " - - - ";
+    }
+
+    public String getNombreDistrito() {
+        return this.distrito!=null?this.distrito.getDistrito():"- - - ";
+    }
+    public String getNombreTipoDenuncia(){
+        return this.tipoDenuncia!=null?this.tipoDenuncia.getTipoDenuncia():"- - - ";
+    }
+    public String getNombreVPD(){
+        return this.vinculoParteDenunciada!=null?this.vinculoParteDenunciada.getNombre():"- - - ";
     }
 }
