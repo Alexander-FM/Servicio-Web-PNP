@@ -42,10 +42,6 @@ public class Denuncia {
     /*--------------------------------------------------*/
     @ManyToOne
     private Policia policia;
-/*
-    @Transient
-    private String nombreCompletoPolicia;
-    */
 
     public int getId() {
         return id;
