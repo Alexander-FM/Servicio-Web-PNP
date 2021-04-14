@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Departamento {
+public final class Departamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

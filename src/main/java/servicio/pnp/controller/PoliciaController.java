@@ -12,16 +12,15 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/policia")
 public class PoliciaController {
-    private PoliciaService service;
-
+    private final PoliciaService service;
+    public PoliciaController(PoliciaService service) {
+        this.service = service;
+    }
     @GetMapping("/{id}")
     public GenericResponse find(@PathVariable int id) {
         return this.service.find(id);
     }
 
-    public PoliciaController(PoliciaService service) {
-        this.service = service;
-    }
 
     @GetMapping("todos")
     public GenericResponse<Iterable<Policia>> listAll() {

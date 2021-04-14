@@ -2,7 +2,6 @@ package servicio.pnp.controller;
 
 import org.springframework.web.bind.annotation.*;
 import servicio.pnp.entity.Denuncia;
-import servicio.pnp.entity.DetalleDenuncia;
 import servicio.pnp.entity.Tramites;
 import servicio.pnp.service.DenunciaService;
 import servicio.pnp.service.DetalleDenunciaService;
@@ -31,8 +30,8 @@ public class DenunciaController {
     }
 
     @GetMapping("/detalle/{idD}")
-    public GenericResponse<List<DetalleDenuncia>> BuscarDetalle(@PathVariable int idD) {
-        return this.ddService.BuscarDetalle(idD);
+    public GenericResponse BuscarDetalles(@PathVariable int idD) {
+        return service.getDetalles(idD);
     }
 
     @GetMapping("/reporte")
@@ -50,7 +49,6 @@ public class DenunciaController {
         return service.generarReporteFiltro(Integer.parseInt(request.getParameter("filtro")),
                 Integer.parseInt(request.getParameter("seleccion")), request.getParameter("fechaInicial"), request.getParameter("fechaFinal"));
     }
-
     @GetMapping("reporteAnual")
     public GenericResponse<Map<String, Object>> reporteAnual() {
         return service.reporteAnual();

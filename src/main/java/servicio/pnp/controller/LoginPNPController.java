@@ -21,6 +21,7 @@ public class LoginPNPController {
 
     @PostMapping
     public GenericResponse login(@RequestBody Credenciales c) {
+
         return this.service.login(c.getCp(), c.getCl());
     }
 

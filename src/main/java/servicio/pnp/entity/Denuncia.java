@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-public class Denuncia {
+public final class Denuncia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -135,7 +135,7 @@ public class Denuncia {
     public String getNombreCompletoPolicia() {
         /*this.nombreCompletoPolicia = policia != null ? this.policia.getNombres() + " " + this.policia.getApellidos() : " - - - ";
         return nombreCompletoPolicia;*/
-        return this.policia != null ? this.policia.getNombres() + " " + this.policia.getApellidos() : " - - - ";
+        return this.policia != null ? this.policia.getNombres() + " " + this.policia.getApellidoPaterno()+" "+this.policia.getApellidoMaterno() : " - - - ";
     }
 
     public String getNombreDistrito() {

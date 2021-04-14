@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Distrito {
+public final class Distrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class EstadoCivil {
+public final class EstadoCivil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

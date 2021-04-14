@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class InformacionAdicional {
+public final class InformacionAdicional {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

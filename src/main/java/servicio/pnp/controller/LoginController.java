@@ -22,10 +22,12 @@ public class LoginController {
     public GenericResponse<Usuario> login(HttpServletRequest request) {
         String email = request.getParameter("email");
         String contrasenia = request.getParameter("contrasenia");
-        return this.service.login(email,contrasenia);
+        //return this.service.login(email,contrasenia);
+        return null;
     }
     @PostMapping
     public GenericResponse<Usuario> save(@Valid @RequestBody Usuario u) {
-        return this.service.save(u);
+        //return this.service.save(u);
+        return null;
     }
 }

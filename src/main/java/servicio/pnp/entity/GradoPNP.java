@@ -3,7 +3,7 @@ package servicio.pnp.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 @Entity
-public class GradoPNP {
+public final class GradoPNP {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

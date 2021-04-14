@@ -25,15 +25,26 @@ public class DenunciaService {
     private final DenunciaRepository repository;
     private final TipoDenunciaRepository tdRepository;
     private final VinculoParteDenunciadaRepository vpdRepository;
+    private final DenunciaAgraviadoService daService;
+    private final DenunciaDenunciadoService ddService;
 
-    public DenunciaService(DenunciaRepository repository, TipoDenunciaRepository tdRepository, VinculoParteDenunciadaRepository vpdRepository) {
+    public DenunciaService(DenunciaRepository repository, TipoDenunciaRepository tdRepository, VinculoParteDenunciadaRepository vpdRepository, DenunciaAgraviadoService daService, DenunciaDenunciadoService ddService) {
         this.repository = repository;
         this.tdRepository = tdRepository;
         this.vpdRepository = vpdRepository;
+        this.daService = daService;
+        this.ddService = ddService;
     }
 
     public GenericResponse<Iterable<Denuncia>> listar() {
         return new GenericResponse<Iterable<Denuncia>>(OPERACION_CORRECTA, RPTA_OK, "detalle encontrado", this.repository.findAll());
+    }
+
+    public GenericResponse<Map<String, Object>> getDetalles(int idD) {
+        Map<String,Object>detalles=new HashMap<>();
+        detalles.put("agraviados",daService.findByDenuncia(idD));
+        detalles.put("denunciados",ddService.findByDenuncia(idD));
+        return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA,detalles);
     }
 
     public GenericResponse<Map<String, Object>> reporte() {
@@ -151,6 +162,7 @@ public class DenunciaService {
         }
         return data;
     }
+
     public GenericResponse save(Denuncia d) {
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(d));
     }
@@ -181,11 +193,11 @@ public class DenunciaService {
 
     public GenericResponse find(int id) {
         Optional<Denuncia> opt = this.repository.findById(id);
-        if(opt.isPresent()){
+        if (opt.isPresent()) {
             return new GenericResponse(TIPO_RESULT,
                     RPTA_OK,
-                    OPERACION_CORRECTA,opt.get());
-        }else{
+                    OPERACION_CORRECTA, opt.get());
+        } else {
             return new GenericResponse(TIPO_RESULT,
                     RPTA_WARNING,
                     OPERACION_INCORRECTA, "La Denuncia no existe en la Base de Datos");

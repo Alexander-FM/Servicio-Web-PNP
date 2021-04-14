@@ -13,7 +13,7 @@ import static servicio.pnp.utils.Global.*;
 @Service
 @Transactional
 public class UsuarioService {
-    private final UsuarioRepository repository;
+    /*private final UsuarioRepository repository;
 
     public UsuarioService(UsuarioRepository repository) {
         this.repository = repository;
@@ -35,5 +35,5 @@ public class UsuarioService {
             return new GenericResponse<Usuario>(TIPO_RESULT, RPTA_WARNING, "este email ya esta asociado a un usuario,pruebe con otro", new Usuario());
         }
         return new GenericResponse<Usuario>(TIPO_AUTH, RPTA_OK, OPERACION_CORRECTA, this.repository.save(u));
-    }
+    }*/
 }

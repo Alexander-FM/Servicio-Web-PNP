@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-public class Tramites {
+public final class Tramites {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

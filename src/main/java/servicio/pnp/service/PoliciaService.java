@@ -50,7 +50,7 @@ public class PoliciaService {
         int idf = opt.isPresent() ? opt.get().getId() : 0;
         //NUEVO REGISTRO
         if (idf == 0) {
-            if (repository.existsByName(p.getNombres().trim(), p.getApellidos().trim(), p.getNumeroIdentificacion().trim(), p.getTelefono().trim()) == 1) {
+            if (repository.existsByName(p.getNombres().trim(), p.getApellidoPaterno().trim(), p.getApellidoMaterno().trim(), p.getNumeroIdentificacion().trim(), p.getTelefono().trim()) == 1) {
                 return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "Lo sentimos: " +
                         "Ya existe un policía con esos mismos datos, intente otra vez, y si el problema persiste comuníquese con soporte técnico.");
             } else {
@@ -60,7 +60,7 @@ public class PoliciaService {
             }
         } else {
             //ACTUALIZAR REGISTRO
-            if (repository.existByNameForUpdate(p.getNombres().trim(), p.getApellidos().trim(), p.getNumeroIdentificacion().trim(), p.getTelefono().trim(), p.getId()) == 1) {
+            if (repository.existByNameForUpdate(p.getNombres().trim(), p.getApellidoPaterno().trim(), p.getApellidoMaterno().trim(), p.getNumeroIdentificacion().trim(), p.getTelefono().trim(), p.getId()) == 1) {
                 return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "Error: Ya existe un" +
                         "policía con esos mismos datos. verifíque e intente de nuevo!.");
             } else {

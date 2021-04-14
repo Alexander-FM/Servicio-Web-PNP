@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class LoginPNP {
+public final class LoginPNP{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

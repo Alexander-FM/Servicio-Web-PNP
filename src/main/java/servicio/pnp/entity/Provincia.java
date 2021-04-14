@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Provincia {
+public final class Provincia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
