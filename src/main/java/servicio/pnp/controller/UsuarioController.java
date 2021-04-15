@@ -11,10 +11,10 @@ import javax.validation.Valid;
 //@CrossOrigin(origins = "*",allowCredentials = "")
 @RequestMapping("api/usuario")
 @RestController
-public class LoginController {
+public class UsuarioController {
     private UsuarioService service;
 
-    public LoginController(UsuarioService service) {
+    public UsuarioController(UsuarioService service) {
         this.service = service;
     }
 
@@ -22,12 +22,10 @@ public class LoginController {
     public GenericResponse<Usuario> login(HttpServletRequest request) {
         String email = request.getParameter("email");
         String contrasenia = request.getParameter("contrasenia");
-        //return this.service.login(email,contrasenia);
-        return null;
+        return this.service.login(email,contrasenia);
     }
     @PostMapping
     public GenericResponse<Usuario> save(@Valid @RequestBody Usuario u) {
-        //return this.service.save(u);
-        return null;
+        return this.service.save(u);
     }
 }

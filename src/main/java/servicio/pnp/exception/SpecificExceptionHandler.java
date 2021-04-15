@@ -16,11 +16,13 @@ import static servicio.pnp.utils.Global.RPTA_ERROR;
 public class SpecificExceptionHandler {
     @ExceptionHandler(JDBCException.class)
     public GenericResponse sqlException(JDBCException ex) {
+        ex.printStackTrace();
         return new GenericResponse("sql-exception", -1, OPERACION_ERRONEA, ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public GenericResponse validException(MethodArgumentNotValidException ex) {
+        ex.printStackTrace();
         return new GenericResponse("valid-exception", RPTA_ERROR, OPERACION_ERRONEA, ex.getMessage());
     }
 }

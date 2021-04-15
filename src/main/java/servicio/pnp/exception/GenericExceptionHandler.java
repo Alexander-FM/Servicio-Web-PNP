@@ -9,6 +9,7 @@ import static servicio.pnp.utils.Global.OPERACION_ERRONEA;
 public class GenericExceptionHandler {
     @ExceptionHandler(Exception.class)
     public GenericResponse genericException(Exception ex) {
+        ex.printStackTrace();
         return new GenericResponse("exception", -1, OPERACION_ERRONEA, ex.getMessage());
     }
 }
