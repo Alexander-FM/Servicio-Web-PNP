@@ -16,6 +16,14 @@ public final class DenunciaAgraviado {
     @OneToOne
     public Agraviado agraviado;
 
+    public DenunciaAgraviado() {
+    }
+
+    public DenunciaAgraviado(Denuncia denuncia, Agraviado agraviado) {
+        this.denuncia = denuncia;
+        this.agraviado = agraviado;
+    }
+
     public int getId() {
         return id;
     }

@@ -2,13 +2,9 @@ package servicio.pnp.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import servicio.pnp.entity.Denuncia;
-import servicio.pnp.entity.TipoDenuncia;
-import servicio.pnp.entity.Tramites;
-import servicio.pnp.entity.VinculoParteDenunciada;
-import servicio.pnp.repository.DenunciaRepository;
-import servicio.pnp.repository.TipoDenunciaRepository;
-import servicio.pnp.repository.VinculoParteDenunciadaRepository;
+import servicio.pnp.entity.*;
+import servicio.pnp.entity.dto.DenunciaConDetallesDTO;
+import servicio.pnp.repository.*;
 import servicio.pnp.utils.GenericResponse;
 
 import java.text.SimpleDateFormat;
@@ -27,13 +23,23 @@ public class DenunciaService {
     private final VinculoParteDenunciadaRepository vpdRepository;
     private final DenunciaAgraviadoService daService;
     private final DenunciaDenunciadoService ddService;
+    private final AgraviadoRepository aRepository;
+    private final DenunciadoRepository dRepository;
 
-    public DenunciaService(DenunciaRepository repository, TipoDenunciaRepository tdRepository, VinculoParteDenunciadaRepository vpdRepository, DenunciaAgraviadoService daService, DenunciaDenunciadoService ddService) {
+    public DenunciaService(DenunciaRepository repository,
+                           TipoDenunciaRepository tdRepository,
+                           VinculoParteDenunciadaRepository vpdRepository,
+                           DenunciaAgraviadoService daService,
+                           DenunciaDenunciadoService ddService,
+                           AgraviadoRepository aRepository,
+                           DenunciadoRepository dRepository) {
         this.repository = repository;
         this.tdRepository = tdRepository;
         this.vpdRepository = vpdRepository;
         this.daService = daService;
         this.ddService = ddService;
+        this.aRepository = aRepository;
+        this.dRepository = dRepository;
     }
 
     public GenericResponse<Iterable<Denuncia>> listar() {
@@ -41,10 +47,10 @@ public class DenunciaService {
     }
 
     public GenericResponse<Map<String, Object>> getDetalles(int idD) {
-        Map<String,Object>detalles=new HashMap<>();
-        detalles.put("agraviados",daService.findByDenuncia(idD));
-        detalles.put("denunciados",ddService.findByDenuncia(idD));
-        return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA,detalles);
+        Map<String, Object> detalles = new HashMap<>();
+        detalles.put("agraviados", daService.findByDenuncia(idD));
+        detalles.put("denunciados", ddService.findByDenuncia(idD));
+        return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, detalles);
     }
 
     public GenericResponse<Map<String, Object>> reporte() {
@@ -163,8 +169,22 @@ public class DenunciaService {
         return data;
     }
 
-    public GenericResponse save(Denuncia d) {
-        return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(d));
+    public GenericResponse save(final DenunciaConDetallesDTO dto) {
+        //return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(d.getDenuncia()));
+        this.repository.save(dto.getDenuncia());
+
+        final Iterable<Agraviado> agraviados = this.aRepository.saveAll(dto.getAgraviados());
+        final Iterable<Denunciado> denunciados = this.dRepository.saveAll(dto.getDenunciados());
+        final List<DenunciaAgraviado> das = new ArrayList<>();
+        final List<DenunciaDenunciado> dds = new ArrayList<>();
+
+        for (Agraviado a : agraviados) {
+            das.add(new DenunciaAgraviado(dto.getDenuncia(), a));
+        }
+        for (Denunciado d : denunciados) {
+            dds.add(new DenunciaDenunciado());
+        }
+        return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, "denuncia guardada correctamente");
     }
 
     public GenericResponse saveDenuncia(Denuncia d) {
