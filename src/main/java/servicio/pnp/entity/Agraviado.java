@@ -16,15 +16,15 @@ public final class Agraviado extends Persona{
     @Column(length = 100)
     private String Juzgado;
     /*-------------------------------------------------*/
-    @NotEmpty(message = "La fecha no puede quedar vacía")
+    //@NotEmpty(message = "La fecha no puede quedar vacía")
     @Column
     private Date fechaEmision;
     /*---------------------------------------------------------*/
-    @NotEmpty(message = "Relate los hechos a denunciar, ¿Cómo sucedio?")
+    //@NotEmpty(message = "Relate los hechos a denunciar, ¿Cómo sucedio?")
     @Column(length = 500, nullable = false)
-    private String RHD;
+    private String rhd;
     /*--------------------------------------------------------*/
-    @NotEmpty(message = "Debe seleccionar una información Adicional")
+    //@NotEmpty(message = "Debe seleccionar una información Adicional")
     @OneToOne /*Un agraviado puede tener una sola información adicional
     por ejemplo si es un Adulto Mayor, Niño, Niña, Enfermo Mental, Población LGTBI, Discapacitado, etc*/
     private InformacionAdicional informacionAdicional;
@@ -61,12 +61,12 @@ public final class Agraviado extends Persona{
         this.fechaEmision = fechaEmision;
     }
 
-    public String getRHD() {
-        return RHD;
+    public String getRhd() {
+        return rhd;
     }
 
-    public void setRHD(String RHD) {
-        this.RHD = RHD;
+    public void setRhd(String rhd) {
+        this.rhd = rhd;
     }
 
     public InformacionAdicional getInformacionAdicional() {

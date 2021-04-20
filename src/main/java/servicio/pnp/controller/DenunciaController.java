@@ -2,7 +2,6 @@ package servicio.pnp.controller;
 
 import org.springframework.web.bind.annotation.*;
 import servicio.pnp.entity.Denuncia;
-import servicio.pnp.entity.Tramites;
 import servicio.pnp.entity.dto.DenunciaConDetallesDTO;
 import servicio.pnp.service.DenunciaService;
 import servicio.pnp.service.DetalleDenunciaService;
@@ -10,10 +9,7 @@ import servicio.pnp.utils.GenericResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Map;
-
-//@CrossOrigin(origins = "*", allowCredentials = "")
 @RequestMapping("api/denuncia")
 @RestController
 public class DenunciaController {
@@ -60,10 +56,6 @@ public class DenunciaController {
         return this.service.save(d);
     }
 
-    @PostMapping("registrar")
-    public GenericResponse<Tramites> saveDenuncia(@Valid @RequestBody Denuncia d) {
-        return service.saveDenuncia(d);
-    }
 
     @GetMapping("/{id}")
     public GenericResponse find(@PathVariable int id) {

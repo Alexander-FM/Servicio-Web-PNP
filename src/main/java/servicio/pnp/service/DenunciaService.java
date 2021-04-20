@@ -182,7 +182,7 @@ public class DenunciaService {
             das.add(new DenunciaAgraviado(dto.getDenuncia(), a));
         }
         for (Denunciado d : denunciados) {
-            dds.add(new DenunciaDenunciado());
+            dds.add(new DenunciaDenunciado(dto.getDenuncia(), d));
         }
         return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, "denuncia guardada correctamente");
     }

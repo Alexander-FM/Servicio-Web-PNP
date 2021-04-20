@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Entity
 public final class Denunciado extends Persona{
-    @NotEmpty(message = "Debe seleccionar información adicional.")
     @OneToOne /*Un denunciado puede tener una sola información adicional
     por ejemplo si es un Adulto Mayor, Niño, Niña, Enfermo Mental, Población LGTBI, Discapacitado, etc*/
     private InformacionAdicional informacionAdicional;

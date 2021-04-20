@@ -34,7 +34,7 @@ public abstract class Persona {
     private Date fechaNacimiento;
     /*-------------------------------------------*/
     @NotEmpty(message = "El campo sexo no puede quedar vacio")
-    @Column(length = 1, nullable = false)
+    @Column(length = 25, nullable = false)
     private String sexo;
     /*-------------------------------------------*/
     @Column(nullable = false)
