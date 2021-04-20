@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import servicio.pnp.entity.DenunciaAgraviado;
 import servicio.pnp.repository.DenunciaAgraviadoRepository;
 
+import java.util.Collection;
+
 @Service
 @Transactional
 public class DenunciaAgraviadoService {
@@ -15,5 +17,8 @@ public class DenunciaAgraviadoService {
     }
     public Iterable<DenunciaAgraviado>findByDenuncia(int idD){
         return this.repository.findByDenuncia(idD);
+    }
+    public void save(Collection<DenunciaAgraviado> da){
+        repository.saveAll(da);
     }
 }

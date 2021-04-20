@@ -184,6 +184,8 @@ public class DenunciaService {
         for (Denunciado d : denunciados) {
             dds.add(new DenunciaDenunciado(dto.getDenuncia(), d));
         }
+        daService.save(das);
+        ddService.save(dds);
         return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, "denuncia guardada correctamente");
     }
 
