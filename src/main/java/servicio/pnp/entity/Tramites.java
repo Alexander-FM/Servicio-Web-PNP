@@ -29,6 +29,17 @@ public final class Tramites {
     @ManyToOne
     private Policia policia; /*Muchos Trámites puede atender un solo policía*/
 
+    @Column(length = 256)
+    private String correo;
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public int getId() {
         return id;
     }

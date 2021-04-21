@@ -14,7 +14,7 @@ public final class Agraviado extends Persona{
     private String detalleProteccion;
     /*-------------------------------------------------*/
     @Column(length = 100)
-    private String Juzgado;
+    private String juzgado;
     /*-------------------------------------------------*/
     //@NotEmpty(message = "La fecha no puede quedar vacía")
     @Column
@@ -46,11 +46,11 @@ public final class Agraviado extends Persona{
     }
 
     public String getJuzgado() {
-        return Juzgado;
+        return juzgado;
     }
 
     public void setJuzgado(String juzgado) {
-        Juzgado = juzgado;
+        this.juzgado = juzgado;
     }
 
     public Date getFechaEmision() {

@@ -42,6 +42,8 @@ public final class Denuncia {
     /*--------------------------------------------------*/
     @ManyToOne
     private Policia policia;
+    @ManyToOne
+    private Usuario usuario;
 
     public int getId() {
         return id;
@@ -146,5 +148,13 @@ public final class Denuncia {
     }
     public String getNombreVPD(){
         return this.vinculoParteDenunciada!=null?this.vinculoParteDenunciada.getNombre():"- - - ";
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
