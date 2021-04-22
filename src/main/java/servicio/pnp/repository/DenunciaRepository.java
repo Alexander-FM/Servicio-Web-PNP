@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import servicio.pnp.entity.Denuncia;
 import servicio.pnp.entity.Tramites;
 
+import java.util.Optional;
+
 public interface DenunciaRepository extends CrudRepository<Denuncia, Integer> {
     @Query("SELECT D FROM Denuncia D WHERE D.tipoDenuncia.id=:idTd")
     Iterable<Denuncia> findByTipo(int idTd);
@@ -29,4 +31,7 @@ public interface DenunciaRepository extends CrudRepository<Denuncia, Integer> {
 
     @Query("SELECT D FROM Denuncia D WHERE D.usuario.id=:idUsu")
     Iterable<Denuncia> devolverDenuncias(int idUsu);
+
+    @Query("SELECT D FROM Denuncia D WHERE D.cod_denuncia=:cod_denuncia AND D.usuario.id=:idUsu")
+    Optional<Denuncia> consultarDenuncia(String cod_denuncia, int idUsu);
 }

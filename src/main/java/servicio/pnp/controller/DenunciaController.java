@@ -2,6 +2,7 @@ package servicio.pnp.controller;
 
 import org.springframework.web.bind.annotation.*;
 import servicio.pnp.entity.Denuncia;
+import servicio.pnp.entity.Tramites;
 import servicio.pnp.entity.dto.DenunciaConDetallesDTO;
 import servicio.pnp.service.DenunciaService;
 import servicio.pnp.service.DetalleDenunciaService;
@@ -71,6 +72,11 @@ public class DenunciaController {
     public GenericResponse update(@PathVariable int id, @Valid @RequestBody Denuncia d) {
         d.setId(id);
         return this.service.saveDenuncia(d);
+    }
+
+    @GetMapping("/consultarDenuncia/{cod_denuncia}/{idUsu}")
+    public GenericResponse<Denuncia> consultarMisDenuncias(@PathVariable String cod_denuncia, @PathVariable int idUsu){
+        return this.service.consultarDenuncia(cod_denuncia, idUsu);
     }
 
 }
