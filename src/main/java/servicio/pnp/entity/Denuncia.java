@@ -1,5 +1,7 @@
 package servicio.pnp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -12,6 +14,7 @@ public final class Denuncia {
     private int id;
     /*----------------------------------------------------*/
     @Column(nullable = false)
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date fechaDenuncia;
     /*---------------------------------------------------*/
     @Column(length = 8)/*POR EJEMPLO: D-3423-P

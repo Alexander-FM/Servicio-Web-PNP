@@ -46,6 +46,10 @@ public class DenunciaService {
         return new GenericResponse<Iterable<Denuncia>>(OPERACION_CORRECTA, RPTA_OK, "detalle encontrado", this.repository.findAll());
     }
 
+    public GenericResponse<Iterable<Denuncia>> devolvermisDenuncias(int idUsu){
+        return  new GenericResponse<Iterable<Denuncia>>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", this.repository.devolverDenuncias(idUsu));
+    }
+
     public GenericResponse<Map<String, Object>> getDetalles(int idD) {
         Map<String, Object> detalles = new HashMap<>();
         detalles.put("agraviados", daService.findByDenuncia(idD));

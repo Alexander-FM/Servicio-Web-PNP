@@ -10,6 +10,7 @@ import servicio.pnp.utils.GenericResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Map;
+import java.util.Optional;
 
 @RequestMapping("api/tramite")
 @RestController
@@ -23,6 +24,11 @@ public class TramiteController {
     @GetMapping
     public GenericResponse<Iterable<Tramites>> list() {
         return service.list();
+    }
+
+    @GetMapping("/misTramites/{idUsu}")
+    public GenericResponse<Iterable<Tramites>> devolverMisTramites(@PathVariable int idUsu){
+        return this.service.devolverTramites(idUsu);
     }
 
     @GetMapping("reportesemanal")
@@ -49,6 +55,11 @@ public class TramiteController {
     public GenericResponse update(@PathVariable int id, @Valid @RequestBody Tramites tr) {
         tr.setId(id);
         return this.service.saveTramite(tr);
+    }
+
+    @GetMapping("/consultarTramite/{codTramite}/{idUsu}")
+    public GenericResponse<Tramites> devolverMisTramites(@PathVariable String codTramite, @PathVariable int idUsu){
+        return this.service.consultarTramite(codTramite, idUsu);
     }
 
     @GetMapping("reportefiltro")

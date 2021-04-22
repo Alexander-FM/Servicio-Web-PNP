@@ -1,5 +1,7 @@
 package servicio.pnp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -14,6 +16,7 @@ public final class Tramites {
     private String codTramite;/*Una vez ingresado el trámite la mayor dará el cod-trámite por correo del usuario*/
     /*--------------------------------------*/
     @Column(nullable = false)
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date fechaDenuncia;/*Se rellenará automaticamente*/
     /*--------------------------------------*/
     @OneToOne

@@ -37,6 +37,14 @@ public class TramiteService {
     public GenericResponse<Iterable<Tramites>> list() {
         return new GenericResponse<>(TIPO_DATA,RPTA_OK,OPERACION_CORRECTA,repository.findAll());
     }
+    public GenericResponse<Iterable<Tramites>> devolverTramites(int idUsu){
+        return  new GenericResponse<Iterable<Tramites>>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", this.repository.devolverTramites(idUsu));
+    }
+
+    public GenericResponse<Tramites> consultarTramite(String codTramite, int idUsu){
+        return new GenericResponse<Tramites>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien",
+                this.repository.consultarTramites(codTramite, idUsu).orElse(new Tramites()));
+    }
 
     public GenericResponse saveTramite(Tramites tr) {
         Optional<Tramites> opt = this.repository.findById(tr.getId());

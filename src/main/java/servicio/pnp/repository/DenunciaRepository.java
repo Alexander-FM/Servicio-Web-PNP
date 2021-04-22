@@ -26,4 +26,7 @@ public interface DenunciaRepository extends CrudRepository<Denuncia, Integer> {
 
     @Query(value = "SELECT EXISTS(SELECT D.* FROM denuncia D WHERE D.cod_denuncia=:codDenuncia AND NOT (D.id=:id))", nativeQuery = true)
     int existByNameForUpdate(String codDenuncia, int id);
+
+    @Query("SELECT D FROM Denuncia D WHERE D.usuario.id=:idUsu")
+    Iterable<Denuncia> devolverDenuncias(int idUsu);
 }
