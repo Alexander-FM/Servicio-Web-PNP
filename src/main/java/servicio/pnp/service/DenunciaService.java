@@ -55,9 +55,11 @@ public class DenunciaService {
         return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", dtos);
     }
 
-    public GenericResponse<Denuncia> consultarDenuncia(String codDenuncia, int idUsu) {
-        return new GenericResponse<Denuncia>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien",
-                this.repository.consultarDenuncia(codDenuncia, idUsu).orElse(new Denuncia()));
+    public GenericResponse<DenunciaConDetallesDTO> consultarDenuncia(String codDenuncia, int idUsu) {
+        final DenunciaConDetallesDTO dto;
+        final Denuncia d = repository.consultarDenuncia(codDenuncia, idUsu).orElse(new Denuncia());
+        dto = new DenunciaConDetallesDTO(d, aRepository.findByDenunciaId(d.getId()), dRepository.findByDenunciaId(d.getId()));
+        return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", dto);
     }
 
     public GenericResponse<Map<String, Object>> getDetalles(int idD) {

@@ -2,7 +2,6 @@ package servicio.pnp.controller;
 
 import org.springframework.web.bind.annotation.*;
 import servicio.pnp.entity.Denuncia;
-import servicio.pnp.entity.Tramites;
 import servicio.pnp.entity.dto.DenunciaConDetallesDTO;
 import servicio.pnp.service.DenunciaService;
 import servicio.pnp.service.DetalleDenunciaService;
@@ -11,6 +10,7 @@ import servicio.pnp.utils.GenericResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Map;
+
 @RequestMapping("api/denuncia")
 @RestController
 public class DenunciaController {
@@ -28,7 +28,7 @@ public class DenunciaController {
     }
 
     @GetMapping("/misDenuncias/{idUsu}")
-    public GenericResponse devolverMisDenuncias(@PathVariable int idUsu){
+    public GenericResponse devolverMisDenuncias(@PathVariable int idUsu) {
         return this.service.devolvermisDenuncias(idUsu);
     }
 
@@ -52,6 +52,7 @@ public class DenunciaController {
         return service.generarReporteFiltro(Integer.parseInt(request.getParameter("filtro")),
                 Integer.parseInt(request.getParameter("seleccion")), request.getParameter("fechaInicial"), request.getParameter("fechaFinal"));
     }
+
     @GetMapping("reporteAnual")
     public GenericResponse<Map<String, Object>> reporteAnual() {
         return service.reporteAnual();
@@ -75,7 +76,7 @@ public class DenunciaController {
     }
 
     @GetMapping("/consultarDenuncia/{cod_denuncia}/{idUsu}")
-    public GenericResponse<Denuncia> consultarMisDenuncias(@PathVariable String cod_denuncia, @PathVariable int idUsu){
+    public GenericResponse consultarDenuncia(@PathVariable String cod_denuncia, @PathVariable int idUsu) {
         return this.service.consultarDenuncia(cod_denuncia, idUsu);
     }
 
