@@ -17,6 +17,12 @@ public class DenunciaConDetallesDTO {
         this.denunciados=new ArrayList<>();
     }
 
+    public DenunciaConDetallesDTO(Denuncia denuncia, List<Agraviado> agraviados, List<Denunciado> denunciados) {
+        this.denuncia = denuncia;
+        this.agraviados = agraviados;
+        this.denunciados = denunciados;
+    }
+
     public Denuncia getDenuncia() {
         return denuncia;
     }

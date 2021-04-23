@@ -28,7 +28,7 @@ public class DenunciaController {
     }
 
     @GetMapping("/misDenuncias/{idUsu}")
-    public GenericResponse<Iterable<Denuncia>> devolverMisDenuncias(@PathVariable int idUsu){
+    public GenericResponse devolverMisDenuncias(@PathVariable int idUsu){
         return this.service.devolvermisDenuncias(idUsu);
     }
 

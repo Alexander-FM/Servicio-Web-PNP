@@ -46,8 +46,13 @@ public class DenunciaService {
         return new GenericResponse<Iterable<Denuncia>>(OPERACION_CORRECTA, RPTA_OK, "detalle encontrado", this.repository.findAll());
     }
 
-    public GenericResponse<Iterable<Denuncia>> devolvermisDenuncias(int idUsu) {
-        return new GenericResponse<Iterable<Denuncia>>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", this.repository.devolverDenuncias(idUsu));
+    public GenericResponse<List<DenunciaConDetallesDTO>> devolvermisDenuncias(int idUsu) {
+        final List<DenunciaConDetallesDTO> dtos = new ArrayList<>();
+        final Iterable<Denuncia> denuncias = repository.devolverDenuncias(idUsu);
+        denuncias.forEach(d -> {
+            dtos.add(new DenunciaConDetallesDTO(d, aRepository.findByDenunciaId(d.getId()), dRepository.findByDenunciaId(d.getId())));
+        });
+        return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", dtos);
     }
 
     public GenericResponse<Denuncia> consultarDenuncia(String codDenuncia, int idUsu) {
