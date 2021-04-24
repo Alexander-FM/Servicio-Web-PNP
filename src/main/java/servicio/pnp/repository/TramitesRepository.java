@@ -24,7 +24,7 @@ public interface TramitesRepository extends CrudRepository<Tramites, Integer> {
     Iterable<Tramites> findByPolicia(int id);
 
     @Query("SELECT T FROM Tramites T WHERE T.estadoTramite=:estado")
-    Iterable<Tramites> findByEstado(int estado);
+    Iterable<Tramites> findByEstado(boolean estado);
 
     @Query("SELECT T FROM Tramites T WHERE T.usuario.id=:idUsu")
     Iterable<Tramites> devolverTramites(int idUsu);

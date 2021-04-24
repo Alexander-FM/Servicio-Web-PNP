@@ -139,7 +139,7 @@ public class DenunciaService {
                     denuncias = repository.findByPolicia(seleccion);
                     break;
                 case 4:
-                    denuncias = repository.findByEstado(seleccion);
+                    denuncias = repository.findByEstado(seleccion == 1);
                     break;
             }
             if (!fechaRangoInicial.equals("") && !fechaRangoFinal.equals("")) {

@@ -35,13 +35,14 @@ public class TramiteService {
     }
 
     public GenericResponse<Iterable<Tramites>> list() {
-        return new GenericResponse<>(TIPO_DATA,RPTA_OK,OPERACION_CORRECTA,repository.findAll());
-    }
-    public GenericResponse<Iterable<Tramites>> devolverTramites(int idUsu){
-        return  new GenericResponse<Iterable<Tramites>>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", this.repository.devolverTramites(idUsu));
+        return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, repository.findAll());
     }
 
-    public GenericResponse<Tramites> consultarTramite(String codTramite, int idUsu){
+    public GenericResponse<Iterable<Tramites>> devolverTramites(int idUsu) {
+        return new GenericResponse<Iterable<Tramites>>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", this.repository.devolverTramites(idUsu));
+    }
+
+    public GenericResponse<Tramites> consultarTramite(String codTramite, int idUsu) {
         return new GenericResponse<Tramites>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien",
                 this.repository.consultarTramites(codTramite, idUsu).orElse(new Tramites()));
     }
@@ -75,11 +76,11 @@ public class TramiteService {
 
     public GenericResponse find(int id) {
         Optional<Tramites> opt = this.repository.findById(id);
-        if(opt.isPresent()){
+        if (opt.isPresent()) {
             return new GenericResponse(TIPO_RESULT,
                     RPTA_OK,
-                    OPERACION_CORRECTA,opt.get());
-        }else{
+                    OPERACION_CORRECTA, opt.get());
+        } else {
             return new GenericResponse(TIPO_RESULT,
                     RPTA_WARNING,
                     OPERACION_INCORRECTA, "El Trámite no existe en la Base de Datos");
@@ -157,7 +158,7 @@ public class TramiteService {
                     tramites = repository.findByPolicia(seleccion);
                     break;
                 case 3:
-                    tramites = repository.findByEstado(seleccion);
+                    tramites = repository.findByEstado(seleccion == 1);
                     break;
             }
             if (!fechaRangoInicial.equals("") && !fechaRangoFinal.equals("")) {

@@ -17,8 +17,8 @@ public interface DenunciaRepository extends CrudRepository<Denuncia, Integer> {
     @Query("SELECT D FROM Denuncia D WHERE D.policia.id=:id")
     Iterable<Denuncia> findByPolicia(int id);
 
-    @Query("SELECT D FROM Denuncia D WHERE D.estadoDenuncia=ed")
-    Iterable<Denuncia> findByEstado(int estado);
+    @Query("SELECT D FROM Denuncia D WHERE D.estadoDenuncia=:ed")
+    Iterable<Denuncia> findByEstado(boolean ed);
 
     @Query(value = "SELECT D.* FROM Denuncia D WHERE  YEAR(DATE(D.fecha_denuncia))=:anio AND MONTH(DATE(D.fecha_denuncia))=:mes", nativeQuery = true)
     Iterable<Denuncia> obtenerContadorPorMesesEnUnAÑoEspecifico(int mes, int anio);
