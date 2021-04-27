@@ -21,9 +21,16 @@ public class UsuarioController {
     @PostMapping("/login")
     public GenericResponse<Usuario> login(HttpServletRequest request) {
         String email = request.getParameter("email");
+
         String contrasenia = request.getParameter("contrasenia");
-        return this.service.login(email,contrasenia);
+        return this.service.login(email, contrasenia);
     }
+
+    @PostMapping("/eByMail")
+    public GenericResponse existByEmail(HttpServletRequest request) {
+        return this.service.existsByEmail(request.getParameter("email"));
+    }
+
     @PostMapping
     public GenericResponse<Usuario> save(@Valid @RequestBody Usuario u) {
         return this.service.save(u);

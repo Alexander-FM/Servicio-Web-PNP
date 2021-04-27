@@ -22,9 +22,9 @@ public class UsuarioService {
     public GenericResponse<Usuario> login(String email, String contrasenia) {
         Optional<Usuario> optU = this.repository.login(email, contrasenia);
         if (optU.isPresent()) {
-            return new GenericResponse<Usuario>(TIPO_AUTH,RPTA_OK,OPERACION_CORRECTA,optU.get());
+            return new GenericResponse<Usuario>(TIPO_AUTH, RPTA_OK, OPERACION_CORRECTA, optU.get());
         } else {
-            return new GenericResponse<Usuario>(TIPO_AUTH,RPTA_WARNING,OPERACION_INCORRECTA,new Usuario());
+            return new GenericResponse<Usuario>(TIPO_AUTH, RPTA_WARNING, OPERACION_INCORRECTA, new Usuario());
         }
     }
 
@@ -35,5 +35,9 @@ public class UsuarioService {
             return new GenericResponse<Usuario>(TIPO_RESULT, RPTA_WARNING, "este email ya esta asociado a un usuario,pruebe con otro", new Usuario());
         }
         return new GenericResponse<Usuario>(TIPO_AUTH, RPTA_OK, OPERACION_CORRECTA, this.repository.save(u));
+    }
+
+    public GenericResponse<Boolean> existsByEmail(String email) {
+        return new GenericResponse(TIPO_RESULT, RPTA_OK, OPERACION_CORRECTA, this.repository.existsByEmail(email) == 1);
     }
 }
