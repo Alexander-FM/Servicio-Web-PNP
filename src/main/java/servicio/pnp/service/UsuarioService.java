@@ -2,6 +2,7 @@ package servicio.pnp.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import servicio.pnp.entity.TipoDenuncia;
 import servicio.pnp.entity.Usuario;
 import servicio.pnp.repository.UsuarioRepository;
 import servicio.pnp.utils.GenericResponse;
@@ -39,5 +40,18 @@ public class UsuarioService {
 
     public GenericResponse<Boolean> existsByEmail(String email) {
         return new GenericResponse(TIPO_RESULT, RPTA_OK, OPERACION_CORRECTA, this.repository.existsByEmail(email) == 1);
+    }
+
+    public GenericResponse<Usuario> changePassword(String email, String pass){
+        Optional<Usuario> optUsuario = repository.findByEmail(email);
+        if (optUsuario.isPresent()){
+            Usuario usu = optUsuario.get();
+            usu.setContraseña(pass);
+            return new GenericResponse<Usuario>(TIPO_RESULT,
+                    RPTA_OK,
+                    "Contraseña cambiada, vuelve a iniciar sesión",
+                    this.repository.save(usu));
+        }
+        return new GenericResponse(TIPO_RESULT, RPTA_ERROR, OPERACION_ERRONEA, new Usuario());
     }
 }

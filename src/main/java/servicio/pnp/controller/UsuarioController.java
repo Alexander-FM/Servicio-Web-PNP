@@ -35,4 +35,9 @@ public class UsuarioController {
     public GenericResponse<Usuario> save(@Valid @RequestBody Usuario u) {
         return this.service.save(u);
     }
+
+    @PostMapping("/changePassword")
+    public GenericResponse<Usuario> changePassword(HttpServletRequest request){
+        return this.service.changePassword(request.getParameter("email"), request.getParameter("clave"));
+    }
 }

@@ -10,6 +10,7 @@ public final class Usuario extends Persona {
     @NotBlank
     private String contraseña;
 
+
     public String getCorreo() {
         return correo;
     }

@@ -15,4 +15,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario,Integer> {
 
     @Query(value = "(SELECT EXISTS(SELECT id FROM Usuario WHERE numero_identificacion=:ni))", nativeQuery = true)
     int existByDoc(String ni);
+
+    @Query("SELECT U FROM Usuario U WHERE U.correo=:email")
+    Optional<Usuario> findByEmail(String email);
 }
