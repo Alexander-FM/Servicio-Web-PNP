@@ -2,15 +2,11 @@ package servicio.pnp.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import servicio.pnp.entity.Denuncia;
-import servicio.pnp.entity.TipoDenuncia;
-import servicio.pnp.entity.TipoTramite;
-import servicio.pnp.entity.Tramites;
+import servicio.pnp.entity.Tramite;
 import servicio.pnp.repository.TramitesRepository;
 import servicio.pnp.utils.GenericResponse;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -34,21 +30,21 @@ public class TramiteService {
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, data);
     }
 
-    public GenericResponse<Iterable<Tramites>> list() {
+    public GenericResponse<Iterable<Tramite>> list() {
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, repository.findAll());
     }
 
-    public GenericResponse<Iterable<Tramites>> devolverTramites(int idUsu) {
-        return new GenericResponse<Iterable<Tramites>>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", this.repository.devolverTramites(idUsu));
+    public GenericResponse<Iterable<Tramite>> devolverTramites(int idUsu) {
+        return new GenericResponse<Iterable<Tramite>>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", this.repository.devolverTramites(idUsu));
     }
 
-    public GenericResponse<Tramites> consultarTramite(String codTramite, int idUsu) {
-        return new GenericResponse<Tramites>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien",
-                this.repository.consultarTramites(codTramite, idUsu).orElse(new Tramites()));
+    public GenericResponse<Tramite> consultarTramite(String codTramite, int idUsu) {
+        return new GenericResponse<Tramite>(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien",
+                this.repository.consultarTramites(codTramite, idUsu).orElse(new Tramite()));
     }
 
-    public GenericResponse saveTramite(Tramites tr) {
-        Optional<Tramites> opt = this.repository.findById(tr.getId());
+    public GenericResponse saveTramite(Tramite tr) {
+        Optional<Tramite> opt = this.repository.findById(tr.getId());
         int idf = opt.isPresent() ? opt.get().getId() : 0;
         //NUEVO REGISTRO
         if (idf == 0) {
@@ -75,7 +71,7 @@ public class TramiteService {
     }
 
     public GenericResponse find(int id) {
-        Optional<Tramites> opt = this.repository.findById(id);
+        Optional<Tramite> opt = this.repository.findById(id);
         if (opt.isPresent()) {
             return new GenericResponse(TIPO_RESULT,
                     RPTA_OK,
@@ -128,7 +124,7 @@ public class TramiteService {
         fechaFinalS = armarFechaDesdeCalendar(ff);
         List<Integer> data = new ArrayList<>();
         for (int i = 1; i <= 7; i++) {
-            data.add(((List<Tramites>) repository.obtenerContadorPorDiadelaSemanaEnunRangoDeFechas(i, fechaInicialS, fechaFinalS)).size());
+            data.add(((List<Tramite>) repository.obtenerContadorPorDiadelaSemanaEnunRangoDeFechas(i, fechaInicialS, fechaFinalS)).size());
         }
         return data;
     }
@@ -143,12 +139,12 @@ public class TramiteService {
         ff.add(Calendar.DAY_OF_YEAR, addF);
     }
 
-    public GenericResponse<Tramites> save(Tramites t) {
+    public GenericResponse<Tramite> save(Tramite t) {
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(t));
     }
 
-    public GenericResponse<Iterable<Tramites>> generarReporteFiltroTramite(int filtro, int seleccion, String fechaRangoInicial, String fechaRangoFinal) {
-        Iterable<Tramites> tramites = null;
+    public GenericResponse<Iterable<Tramite>> generarReporteFiltroTramite(int filtro, int seleccion, String fechaRangoInicial, String fechaRangoFinal) {
+        Iterable<Tramite> tramites = null;
         try {
             switch (filtro) {
                 case 1:
@@ -164,9 +160,9 @@ public class TramiteService {
             if (!fechaRangoInicial.equals("") && !fechaRangoFinal.equals("")) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date fechaInicial = sdf.parse(fechaRangoInicial), fechaFinal = sdf.parse(fechaRangoFinal);
-                List<Tramites> tramitesFiltrados = new ArrayList<>();
-                for (Tramites d : tramites) {
-                    if (!d.getFechaDenuncia().before(fechaInicial) && !d.getFechaDenuncia().after(fechaFinal)) {
+                List<Tramite> tramitesFiltrados = new ArrayList<>();
+                for (Tramite d : tramites) {
+                    if (!d.getFechaTramite().before(fechaInicial) && !d.getFechaTramite().after(fechaFinal)) {
                         tramitesFiltrados.add(d);
                     }
                 }

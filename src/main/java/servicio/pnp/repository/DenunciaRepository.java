@@ -3,7 +3,6 @@ package servicio.pnp.repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import servicio.pnp.entity.Denuncia;
-import servicio.pnp.entity.Tramites;
 
 import java.util.Optional;
 

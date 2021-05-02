@@ -59,7 +59,7 @@ public class DenunciaController {
     }
 
     @PostMapping
-    public GenericResponse save(@RequestBody DenunciaConDetallesDTO d) {
+    public GenericResponse save( @RequestBody DenunciaConDetallesDTO d) {
         return this.service.save(d);
     }
 

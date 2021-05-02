@@ -20,7 +20,7 @@ public class TipoDenunciaController {
     public GenericResponse find(@PathVariable int id) {
         return this.service.find(id);
     }
-    @GetMapping("todos")
+    @GetMapping("/todos")
     public GenericResponse listAll() {
         return this.service.listAll();
     }

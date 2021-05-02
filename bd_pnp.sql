@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-04-2021 a las 03:30:49
+-- Tiempo de generación: 02-05-2021 a las 05:36:17
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -32,15 +32,15 @@ CREATE TABLE `agraviado` (
   `apellido_materno` varchar(100) NOT NULL,
   `apellido_paterno` varchar(100) NOT NULL,
   `direccion` varchar(500) DEFAULT NULL,
-  `fecha_nacimiento` datetime DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
   `nombres` varchar(100) NOT NULL,
   `numero_identificacion` varchar(11) NOT NULL,
   `sexo` varchar(25) NOT NULL,
   `telefono` varchar(9) NOT NULL,
   `vigencia` bit(1) NOT NULL,
-  `juzgado` varchar(100) DEFAULT NULL,
   `detalle_proteccion` varchar(500) DEFAULT NULL,
-  `fecha_emision` datetime DEFAULT NULL,
+  `fecha_emision` date DEFAULT NULL,
+  `juzgado` varchar(100) DEFAULT NULL,
   `medida_proteccion` bit(1) NOT NULL,
   `rhd` varchar(500) NOT NULL,
   `distrito_id` int(11) DEFAULT NULL,
@@ -53,19 +53,9 @@ CREATE TABLE `agraviado` (
 -- Volcado de datos para la tabla `agraviado`
 --
 
-INSERT INTO `agraviado` (`id`, `apellido_materno`, `apellido_paterno`, `direccion`, `fecha_nacimiento`, `nombres`, `numero_identificacion`, `sexo`, `telefono`, `vigencia`, `juzgado`, `detalle_proteccion`, `fecha_emision`, `medida_proteccion`, `rhd`, `distrito_id`, `estado_civil_id`, `tipo_identificacion_id`, `informacion_adicional_id`) VALUES
-(3, ' Medina', 'Fuentes', '- - - ', '1999-12-19 14:30:00', 'Alexander', '78019778', 'M', '951357852', b'0', NULL, NULL, NULL, b'0', 'Me golpearon salvajemente', 3, NULL, 1, 1),
-(4, ' Oxenford', 'Rodriguez', NULL, '1995-03-10 13:21:04', 'Martha Julia', '45542552', 'F', '978936111', b'0', NULL, NULL, NULL, b'0', 'Fui ultraja por tres amigos míos en una noche de fiesta', 1, NULL, 1, 1),
-(5, 'Ballona', 'Capitan', NULL, '1998-10-16 15:22:39', 'Katherine', '44488877', 'F', '987789944', b'0', NULL, NULL, NULL, b'0', 'Fui agredida por mis tíos en casa de mis padres, trato de asesinarme con un cuchillo', 2, NULL, 1, 1),
-(6, ' Chicoma', 'Chicoma', NULL, '1995-03-31 07:22:39', 'Jhair', '45528791', 'M', '955996696', b'0', NULL, NULL, NULL, b'0', 'Mi tío abuso sexualmente de mi ofreciéndome un chocolate.', 4, NULL, 1, 1),
-(7, ' Carrion', 'Sirlopu', NULL, '2000-08-31 07:22:40', 'Yadhira ', '65567887', 'F', '944987682', b'0', 'Juzgado de  Familia', 'Que el esposo no se le acerca 1km a la redonda', '2021-03-09 13:53:25', b'1', 'Mi esposo me insulta todos los días y me golpea salvajemente.', 1, NULL, 1, 1),
-(8, ' Torres', 'Yupanqui', NULL, '1998-03-22 13:59:37', 'Camila', '58854554', 'F', '963147856', b'0', NULL, NULL, NULL, b'0', 'Mi enamorado mucho me insulta cuando llego de trabajar', 1, NULL, 1, 1),
-(9, 'TUESTA', 'VEINTIMILLA', 'No existe información', '1975-04-27 19:00:00', 'JESUS', '01139746', 'Femenino', '968458123', b'0', NULL, NULL, NULL, b'0', 'mi esposo llegó borracho en la calle y me golpeó la cabeza con una botella de vidrio', 2, 2, 1, 1),
-(15, 'TUESTA', 'VEINTIMILLA', 'No existe información', '1975-04-27 19:00:00', 'JESUS', '01139746', 'Femenino', '968458123', b'0', NULL, NULL, NULL, b'0', 'mi jefe no me quiere pagar desde hace 2 meses', 1, 2, 1, 7),
-(16, 'TUESTA', 'VEINTIMILLA', 'No existe información', '1975-04-27 19:00:00', 'JESUS', '01139746', 'Femenino', '968458123', b'0', NULL, NULL, NULL, b'0', 'ME VIOLO SALVAJEMENTE.', 1, 2, 1, 7),
-(17, 'Bravo', 'Cajo', 'Calle Bolivar N.° 123', '1997-12-12 19:00:00', 'Antonella Franchesca', '45693214', 'Femenino', '974123485', b'0', 'Juzgado de Familia', 'No se puede acercar a mi casa.', '2021-04-05 19:00:00', b'1', 'Alexander me violó fuertemente y me hizo sangrar.', 3, 2, 1, 1),
-(18, 'TUESTA', 'VEINTIMILLA', 'Calle San Borja N.° 458', '1975-04-27 19:00:00', 'JESUS', '01139746', 'Femenino', '968458123', b'0', 'Juzgado de Familia', 'El denunciado no se puede acercar.', '2021-04-11 19:00:00', b'1', 'Me golpeó SALVAJEMENTE.', 1, 2, 1, 2),
-(19, 'TUESTA', 'VEINTIMILLA', 'No existe información', '1975-04-27 19:00:00', 'JESUS', '01139746', 'Femenino', '968458123', b'0', NULL, NULL, NULL, b'0', 'Me insultó en la calle.', 1, 2, 1, 7);
+INSERT INTO `agraviado` (`id`, `apellido_materno`, `apellido_paterno`, `direccion`, `fecha_nacimiento`, `nombres`, `numero_identificacion`, `sexo`, `telefono`, `vigencia`, `detalle_proteccion`, `fecha_emision`, `juzgado`, `medida_proteccion`, `rhd`, `distrito_id`, `estado_civil_id`, `tipo_identificacion_id`, `informacion_adicional_id`) VALUES
+(5, 'Veintimilla', 'Cumpa', 'Calle Las Riberas Villa Los Sauces Manzana V Lote 5', '2000-11-03', 'Oscar Antonio', '7313193', 'Masculino', '937813800', b'0', NULL, NULL, NULL, b'0', 'dfdfd', 1, 1, 1, 2),
+(6, 'VEINTIMILLA', 'CHIA', 'foto 121 edificio A residencial José Balta', '1995-12-03', 'JENNYFER PAQUITA', '73444093', 'Femenino', '997337596', b'0', NULL, NULL, NULL, b'0', 'un señor de me hacerlo y me tiro un mazo en la cabeza', 1, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -78,32 +68,25 @@ CREATE TABLE `denuncia` (
   `cod_denuncia` varchar(8) DEFAULT NULL,
   `direccion` varchar(500) NOT NULL,
   `estado_denuncia` bit(1) DEFAULT NULL,
-  `fecha_denuncia` datetime NOT NULL,
-  `fecha_hechos` datetime DEFAULT NULL,
+  `fecha_denuncia` date NOT NULL,
+  `fecha_hechos` date NOT NULL,
+  `hora_denuncia` time NOT NULL,
+  `hora_hechos` time NOT NULL,
   `referencia_direccion` varchar(500) NOT NULL,
   `distrito_id` int(11) DEFAULT NULL,
   `policia_id` int(11) DEFAULT NULL,
   `tipo_denuncia_id` int(11) DEFAULT NULL,
-  `vinculo_parte_denunciada_id` int(11) DEFAULT NULL,
-  `usuario_id` int(11) DEFAULT NULL
+  `usuario_id` int(11) DEFAULT NULL,
+  `vinculo_parte_denunciada_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `denuncia`
 --
 
-INSERT INTO `denuncia` (`id`, `cod_denuncia`, `direccion`, `estado_denuncia`, `fecha_denuncia`, `fecha_hechos`, `referencia_direccion`, `distrito_id`, `policia_id`, `tipo_denuncia_id`, `vinculo_parte_denunciada_id`, `usuario_id`) VALUES
-(1, '???', 'Las Palmeras', b'0', '2021-03-08 16:44:41', '2021-03-05 16:44:50', 'Frente a al parque virgen de túcume', 3, 1, 1, 3, 1),
-(2, '???', 'Calle San Juan Bosco N.230', b'1', '2021-03-09 14:15:22', '2021-03-02 14:15:22', 'Por el parque principal de san juan bosco', 3, 2, 1, 2, 1),
-(3, '???', 'Calle San Ramon N.º 230', b'0', '2021-03-09 15:47:49', '2021-03-03 15:47:49', 'Por el complejo deportivo', 3, 3, 3, 2, 1),
-(4, '???', 'Calle San Tomas SN', b'0', '2020-03-09 16:45:31', '2020-02-04 16:45:31', 'No existe información', 1, 3, 1, 2, 1),
-(5, '???', 'Av. Carrion N.º 450', b'1', '2021-03-09 16:45:31', '2021-02-01 16:45:31', 'No existe Informacion', 4, 1, 2, 1, 1),
-(23, '???', 'Villa Los Sauces Manzana V Lote 5', b'0', '2021-04-19 19:00:00', '2021-04-16 19:00:00', 'a la derecha antes de entrar por el segundo portón', 2, 1, 2, 3, 1),
-(29, '? ? ?', 'Los parques de San Gabriel N.º 456', b'0', '2021-04-19 19:00:00', '2021-04-16 19:00:00', 'Frente al campo deportivo', 1, 1, 4, 1, 1),
-(30, 'D-6985-S', 'SUCRE N.° 903', b'1', '2021-04-19 19:00:00', '2021-04-17 19:00:00', 'POR LA ACEQUIA EL PUEBLO', 3, 4, 3, 2, 1),
-(31, '? ? ?', 'Calle Las Palmas N.° 245', b'0', '2021-04-19 19:00:00', '2021-04-18 19:00:00', 'Frente al parque infantil', 4, 1, 3, 2, 1),
-(32, 'D-7568-F', 'Calle Ilo N.° 254', b'1', '2021-04-19 19:00:00', '2021-04-18 19:00:00', 'Frente a la cancha deportiva', 1, 3, 1, 1, 1),
-(33, '? ? ?', 'Calle San Juan N.° 456', b'0', '2021-04-19 19:00:00', '2021-04-12 19:00:00', 'Frente a la farmacia AgipPharma', 1, 1, 2, 1, 1);
+INSERT INTO `denuncia` (`id`, `cod_denuncia`, `direccion`, `estado_denuncia`, `fecha_denuncia`, `fecha_hechos`, `hora_denuncia`, `hora_hechos`, `referencia_direccion`, `distrito_id`, `policia_id`, `tipo_denuncia_id`, `usuario_id`, `vinculo_parte_denunciada_id`) VALUES
+(6, 'D-001', 'dir', b'1', '2021-04-29', '2021-04-27', '05:17:55', '05:17:55', 'ref', 1, 1, 4, 1, 5),
+(7, '? ? ?', 'parque central de la Urbanizacion Santa Elena', b'0', '2021-04-30', '2021-04-19', '16:42:20', '16:42:20', 'al costado del edificio', 1, 1, 1, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -116,7 +99,7 @@ CREATE TABLE `denunciado` (
   `apellido_materno` varchar(100) NOT NULL,
   `apellido_paterno` varchar(100) NOT NULL,
   `direccion` varchar(500) DEFAULT NULL,
-  `fecha_nacimiento` datetime DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
   `nombres` varchar(100) NOT NULL,
   `numero_identificacion` varchar(11) NOT NULL,
   `sexo` varchar(25) NOT NULL,
@@ -133,22 +116,8 @@ CREATE TABLE `denunciado` (
 --
 
 INSERT INTO `denunciado` (`id`, `apellido_materno`, `apellido_paterno`, `direccion`, `fecha_nacimiento`, `nombres`, `numero_identificacion`, `sexo`, `telefono`, `vigencia`, `distrito_id`, `estado_civil_id`, `tipo_identificacion_id`, `informacion_adicional_id`) VALUES
-(1, 'Quisque', 'Chumioqui', 'Santa Elena N.º123', '2021-04-08 16:37:21', 'Alejandro Jose', '95874123', 'M', '939272190', b'0', 4, 2, 1, 1),
-(2, 'Murrillo', 'Vargas', 'Calle Jesus Maria N.º320', '2021-04-14 16:37:26', 'Takeshi Obed', '45547887', 'M', '915375465', b'0', 1, 2, 1, 1),
-(3, 'Díaz', 'Gastelo', 'Calle Ilo N.º450', '2021-04-16 16:37:29', 'Alexis', '65568558', 'M', '999555478', b'0', 4, 2, 1, 1),
-(4, 'Sandoval', 'Torres', 'Calle Marte N.º230', '2021-04-20 16:37:31', 'Miguel Angel', '25526336', 'M', '988876471', b'0', 2, 2, 1, 2),
-(5, 'Llamo', 'Coronado', 'Av. San Juan N.º230', '2021-04-22 16:37:34', 'Nahun Alfonso', '25529669', 'M', '933366636', b'0', 4, 2, 1, 2),
-(6, 'Huaman', 'Fernandez', 'Calle Junín N.º 555', '2021-04-02 16:37:36', 'Patrick', '20021221', 'M', '978897123', b'0', 2, 4, 1, 2),
-(7, 'Pisfil', 'Medina', 'Calle San Eduardo N.º 199', '2021-04-16 16:37:38', 'Alejandra María', '54458778', 'F', '978258312', b'0', 3, 2, 1, 4),
-(8, 'Siesquen', 'Llanos', 'Av. San Bartolome N.º 450', '2021-04-09 16:37:41', 'Francisco', '33399978', 'M', '931731982', b'0', 3, 2, 1, 2),
-(9, 'Chuquilin', 'Sandoval', 'Av. San Mariano Cornejo N.º304', '2021-04-23 16:37:43', 'Alejandro', '88779966', 'M', '944955966', b'0', 1, 2, 1, 1),
-(10, 'Cornejo', 'Brenis', 'Av. Santa Catalina N.º 128', '2021-04-16 16:37:46', 'Fernando', '22211133', 'M', '977918935', b'0', 1, 2, 1, 1),
-(11, 'Sánchez', 'Cumpa', 'Villa Los Sauces Manzana V Lote 5', '1974-06-29 19:00:00', 'Oscar Manuel', '16620936', 'Masculino', '956322572', b'0', 1, 2, 1, 3),
-(17, 'Garnes', 'Ibañez', 'nolose', '1980-04-19 19:00:00', 'André Piero', '75729150', 'Masculino', '986712354', b'0', 1, 2, 1, 7),
-(18, 'TORRES', 'ZACARIAS', 'CALLE MARTE N.° 203', '1993-04-19 19:00:00', 'JOSÉ EDUARDO', '65457896', 'Masculino', '974123568', b'0', 3, 2, 1, 7),
-(19, 'Medina', 'Fuentes', 'Calle Sucre N.° 903', '1999-12-18 19:00:00', 'Luigui Alexander', '78019778', 'Masculino', '917967148', b'0', 3, 2, 1, 1),
-(20, 'TERRONES', 'CERRRON', 'Calle Santos N.° 568', '1963-04-19 19:00:00', 'RAMON TOMAS', '42156378', 'Masculino', '963258741', b'0', 2, 2, 1, 7),
-(21, 'Medina', 'Fuentes', 'Calle San Idilio N.° 789', '1947-08-11 19:00:00', 'Jesús Maria', '78019778', 'Masculino', '963258159', b'0', 4, 2, 1, 7);
+(5, 'Zuñiga', 'Salazar', 'nolose xd', '2000-04-30', 'William Baruc', '95421547', 'Masculino', '951247854', b'0', 1, 1, 1, 2),
+(6, 'Seclen', 'Fuentes', 'no lo sé :(', '1990-04-30', 'Alessandro', '24637526', 'Masculino', '924536743', b'0', 1, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -167,17 +136,8 @@ CREATE TABLE `denuncia_agraviado` (
 --
 
 INSERT INTO `denuncia_agraviado` (`id`, `agraviado_id`, `denuncia_id`) VALUES
-(1, 3, 1),
-(2, 6, 2),
-(3, 4, 3),
-(5, 5, 4),
-(7, 7, 5),
-(8, 9, 23),
-(14, 15, 29),
-(15, 16, 30),
-(16, 17, 31),
-(17, 18, 32),
-(18, 19, 33);
+(5, 5, 6),
+(6, 6, 7);
 
 -- --------------------------------------------------------
 
@@ -196,18 +156,8 @@ CREATE TABLE `denuncia_denunciado` (
 --
 
 INSERT INTO `denuncia_denunciado` (`id`, `denuncia_id`, `denunciado_id`) VALUES
-(1, 1, 10),
-(2, 2, 3),
-(3, 3, 2),
-(4, 3, 4),
-(5, 4, 9),
-(6, 4, 8),
-(7, 23, 11),
-(13, 29, 17),
-(14, 30, 18),
-(15, 31, 19),
-(16, 32, 20),
-(17, 33, 21);
+(5, 6, 5),
+(6, 7, 6);
 
 -- --------------------------------------------------------
 
@@ -249,9 +199,8 @@ CREATE TABLE `distrito` (
 
 INSERT INTO `distrito` (`id`, `codigo_postal`, `distrito`, `estado`, `provincia_id`) VALUES
 (1, '14001', 'Chiclayo', b'1', 1),
-(2, '14002', 'José Leonardo Ortiz', b'1', 1),
-(3, '14311', 'Ferreñafe', b'1', 2),
-(4, '14311', 'Pueblo Nuevo', b'1', 2);
+(2, '', '- - -', b'0', NULL),
+(3, '14330', 'JLO', b'1', 1);
 
 -- --------------------------------------------------------
 
@@ -270,10 +219,10 @@ CREATE TABLE `estado_civil` (
 --
 
 INSERT INTO `estado_civil` (`id`, `estado`, `estado_civil`) VALUES
-(1, b'1', 'Casado'),
-(2, b'1', 'Soltero'),
-(3, b'1', 'Conviviente'),
-(4, b'1', 'Divorciado');
+(1, b'1', 'Soltero'),
+(2, b'1', 'Casado'),
+(3, b'0', 'Viudo'),
+(5, b'0', 'Divorciado');
 
 -- --------------------------------------------------------
 
@@ -292,9 +241,10 @@ CREATE TABLE `gradopnp` (
 --
 
 INSERT INTO `gradopnp` (`id`, `nombre_grado`, `vigencia`) VALUES
-(1, 'Mayor PNP', b'1'),
+(1, 'Mayor', b'1'),
 (2, 'Teniente', b'1'),
-(3, 'Coronel', b'1');
+(3, 'Coronel', b'1'),
+(4, 'Test', b'1');
 
 -- --------------------------------------------------------
 
@@ -312,13 +262,12 @@ CREATE TABLE `informacion_adicional` (
 --
 
 INSERT INTO `informacion_adicional` (`id`, `nombre`) VALUES
-(1, 'Joven'),
-(2, 'Adulto Mayor'),
-(3, 'Niño'),
-(4, 'Niña'),
-(5, 'Población LGTBI'),
-(6, 'Discapacitado'),
-(7, 'Señor (a)');
+(1, 'Ninio(a)'),
+(2, 'Joven'),
+(3, 'Señor (a)'),
+(4, 'Adulto Mayor'),
+(5, 'Embarazada'),
+(6, 'Bebé');
 
 -- --------------------------------------------------------
 
@@ -339,7 +288,7 @@ CREATE TABLE `loginpnp` (
 --
 
 INSERT INTO `loginpnp` (`id`, `clave`, `codigo_policial`, `estado`, `policia_id`) VALUES
-(1, 'admin123', 'P4554', b'1', 1);
+(1, 'mayor123', 'p4554', b'1', 1);
 
 -- --------------------------------------------------------
 
@@ -352,7 +301,7 @@ CREATE TABLE `policia` (
   `apellido_materno` varchar(100) NOT NULL,
   `apellido_paterno` varchar(100) NOT NULL,
   `direccion` varchar(500) DEFAULT NULL,
-  `fecha_nacimiento` datetime DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
   `nombres` varchar(100) NOT NULL,
   `numero_identificacion` varchar(11) NOT NULL,
   `sexo` varchar(25) NOT NULL,
@@ -370,10 +319,7 @@ CREATE TABLE `policia` (
 --
 
 INSERT INTO `policia` (`id`, `apellido_materno`, `apellido_paterno`, `direccion`, `fecha_nacimiento`, `nombres`, `numero_identificacion`, `sexo`, `telefono`, `vigencia`, `estado`, `distrito_id`, `estado_civil_id`, `tipo_identificacion_id`, `gradopnp_id`) VALUES
-(1, 'Ramírez', 'Portocarrero', '- - -', '1985-04-13 15:32:51', 'Ana Rosa', '45541232', 'F', '963147856', b'0', b'1', 2, 1, 1, 1),
-(2, 'Huallama', 'Torres', '- - -', '1992-04-10 12:57:06', 'Alejandro', '11223344', 'M', '951357852', b'0', b'1', 2, 2, 1, 1),
-(3, ' Atoche', 'Tejada ', '- - -', '1999-04-16 12:57:40', 'Jose Eduardo', '65885798', 'M', '951444789', b'0', b'1', 4, 3, 1, 1),
-(4, 'Paz', 'Nuñez ', '', NULL, 'Edson Iván', '26845798', 'M', '956334276', b'0', b'1', 1, 4, 1, 1);
+(1, 'Portocarrero', 'Jimenez', 'Calle 274 urb los Girasoles José Leonardo Ortiz', '1980-07-17', 'Ana Rosa', '01125478', 'F', '945214758', b'1', b'1', 3, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -393,8 +339,29 @@ CREATE TABLE `provincia` (
 --
 
 INSERT INTO `provincia` (`id`, `estado`, `provincia`, `departamento_id`) VALUES
-(1, b'1', 'Chiclayo', 1),
-(2, b'1', 'Ferreñafe', 1);
+(1, b'1', 'Chiclayo', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sugerencia`
+--
+
+CREATE TABLE `sugerencia` (
+  `id` int(11) NOT NULL,
+  `comentario` varchar(1000) NOT NULL,
+  `estrellas` float NOT NULL,
+  `usuario_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `sugerencia`
+--
+
+INSERT INTO `sugerencia` (`id`, `comentario`, `estrellas`, `usuario_id`) VALUES
+(1, 'la aplicacion esta muy buena,solo que he encontrado varios bugs que podrian dañar la experienciaq de usuario, sigan mejorandola ', 3, 1),
+(2, 'la aplicacion esta muy buena,solo que he encontrado varios bugs que podrian dañar la experienciaq de usuario, sigan mejorandola ', 3.5, 1),
+(3, 'La aplicación está muy guay y ayuda mucho ene ataos tiempos de pandemia a no ir directamente a la comisaría,ahhorandonos tiempo y protegiéndonos del covid,solo pediría que simplifiquen un poco los campos necesarios para poder registrar la denuncia, porque me parece muy tedioso estar llenando demasiados campos de texto', 2.5, 2);
 
 -- --------------------------------------------------------
 
@@ -414,9 +381,9 @@ CREATE TABLE `tipo_denuncia` (
 
 INSERT INTO `tipo_denuncia` (`id`, `estado`, `tipo_denuncia`) VALUES
 (1, b'1', 'Fisica'),
-(2, b'1', 'Psicológica'),
-(3, b'1', 'Sexual'),
-(4, b'1', 'Económica');
+(2, b'1', 'Sexual'),
+(3, b'1', 'Económica'),
+(4, b'1', 'Difamacion');
 
 -- --------------------------------------------------------
 
@@ -436,7 +403,7 @@ CREATE TABLE `tipo_identificacion` (
 
 INSERT INTO `tipo_identificacion` (`id`, `estado`, `tipo_identificacion`) VALUES
 (1, b'1', 'Natural'),
-(2, b'1', 'Jurídica ');
+(2, b'1', 'Jurídica');
 
 -- --------------------------------------------------------
 
@@ -455,37 +422,35 @@ CREATE TABLE `tipo_tramite` (
 --
 
 INSERT INTO `tipo_tramite` (`id`, `estado`, `tipo_tramite`) VALUES
-(1, b'1', 'Copia Certificada'),
-(2, b'1', 'Solicitud');
+(1, b'1', 'Solicitud'),
+(2, b'1', 'Copia Certificada'),
+(3, b'1', 'Otro');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tramites`
+-- Estructura de tabla para la tabla `tramite`
 --
 
-CREATE TABLE `tramites` (
+CREATE TABLE `tramite` (
   `id` int(11) NOT NULL,
   `cod_tramite` varchar(6) DEFAULT NULL,
+  `correo` varchar(256) DEFAULT NULL,
   `estado_tramite` bit(1) NOT NULL,
-  `fecha_denuncia` datetime NOT NULL,
+  `fecha_tramite` date NOT NULL,
+  `hora_tramite` time NOT NULL,
   `policia_id` int(11) DEFAULT NULL,
   `tipo_tramite_id` int(11) DEFAULT NULL,
-  `usuario_id` int(11) DEFAULT NULL,
-  `correo` varchar(256) DEFAULT NULL
+  `usuario_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `tramites`
+-- Volcado de datos para la tabla `tramite`
 --
 
-INSERT INTO `tramites` (`id`, `cod_tramite`, `estado_tramite`, `fecha_denuncia`, `policia_id`, `tipo_tramite_id`, `usuario_id`, `correo`) VALUES
-(1, 'C-2021', b'1', '2021-04-19 19:00:00', 3, 1, 1, 'oscarcumpaelprogramador@live.com'),
-(2, '???', b'0', '2021-04-19 19:00:00', 1, 2, 3, 'alexander@live.com'),
-(3, '???', b'0', '2021-04-19 19:00:00', 1, 1, 3, 'alexander@live.com'),
-(5, '???', b'0', '2021-04-19 19:00:00', 1, 1, 3, 'alexander@live.com'),
-(6, '???', b'0', '2021-04-19 19:00:00', 1, 1, 1, 'oscarcumpaelprogramador@live.com'),
-(7, 'C-0238', b'1', '2021-04-19 19:00:00', 3, 2, 3, 'alexander@live.com');
+INSERT INTO `tramite` (`id`, `cod_tramite`, `correo`, `estado_tramite`, `fecha_tramite`, `hora_tramite`, `policia_id`, `tipo_tramite_id`, `usuario_id`) VALUES
+(1, 'T-001', 'oscarcumpa2@gmail.com', b'1', '2021-04-29', '20:48:00', 1, 2, 1),
+(2, 'T-002', 'jennyfer_459@hotmail.com', b'1', '2021-04-29', '16:37:21', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -498,7 +463,7 @@ CREATE TABLE `usuario` (
   `apellido_materno` varchar(100) NOT NULL,
   `apellido_paterno` varchar(100) NOT NULL,
   `direccion` varchar(500) DEFAULT NULL,
-  `fecha_nacimiento` datetime DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
   `nombres` varchar(100) NOT NULL,
   `numero_identificacion` varchar(11) NOT NULL,
   `sexo` varchar(25) NOT NULL,
@@ -516,9 +481,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `apellido_materno`, `apellido_paterno`, `direccion`, `fecha_nacimiento`, `nombres`, `numero_identificacion`, `sexo`, `telefono`, `vigencia`, `contraseña`, `correo`, `distrito_id`, `estado_civil_id`, `tipo_identificacion_id`) VALUES
-(1, 'TUESTA', 'VEINTIMILLA', 'No existe información', '1975-03-27 19:00:00', 'JESUS', '01139746', 'M', '968458123', b'1', 'jesusita', 'jesusvt74@gmail.com', 1, 2, 1),
-(3, 'MEDINA', 'FUENTES', 'Calle Sucre N.° 903', '1999-12-18 19:00:00', 'ALEXANDER', '78019778', 'H', '968458123', b'1', 'administrador', 'alexander@live.com', 3, 2, 1),
-(4, 'MEOÑO', 'MEDINA', 'Calle Sucre N.° 903', '0035-09-21 19:00:00', 'MARY LEONOR', '17432825', 'M', '917967148', b'1', 'admin123', 'maryleonormm30@gmail.com', 3, 3, 1);
+(1, 'Veintimilla', 'Cumpa', 'Calle Las Riberas Villa Los Sauces Manzana V Lote 5', '2000-11-04', 'Oscar Antonio', '7313193', 'H', '937813800', b'1', 'Cumpax', 'oscarcumpa2@hotmail.com', 1, 1, 1),
+(2, 'VEINTIMILLA', 'CHIA', 'foto 121 edificio A residencial José Balta', '1995-11-04', 'JENNYFER PAQUITA', '73444093', 'M', '997337596', b'1', 'jennyfer1995', 'jennyfer_459@hotmail.com', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -536,9 +500,10 @@ CREATE TABLE `vinculo_parte_denunciada` (
 --
 
 INSERT INTO `vinculo_parte_denunciada` (`id`, `nombre`) VALUES
-(1, 'Laboral'),
-(2, 'Familiar'),
-(3, 'Otro');
+(1, 'Familiar'),
+(2, 'Amigo'),
+(4, 'Laboral'),
+(5, 'Otro');
 
 --
 -- Índices para tablas volcadas
@@ -562,8 +527,8 @@ ALTER TABLE `denuncia`
   ADD KEY `FK8f8ks02c6l8fufy7caj02sfko` (`distrito_id`),
   ADD KEY `FKixrvil4j93k7dm6iimgs73ask` (`policia_id`),
   ADD KEY `FKgu959qvh6xjtpue63lx2eki8b` (`tipo_denuncia_id`),
-  ADD KEY `FKbe8wy8rcie9vw5d87tvvc6bpe` (`vinculo_parte_denunciada_id`),
-  ADD KEY `FKtjlwue48v7ycj9cu55luadafn` (`usuario_id`);
+  ADD KEY `FKtjlwue48v7ycj9cu55luadafn` (`usuario_id`),
+  ADD KEY `FKbe8wy8rcie9vw5d87tvvc6bpe` (`vinculo_parte_denunciada_id`);
 
 --
 -- Indices de la tabla `denunciado`
@@ -647,6 +612,13 @@ ALTER TABLE `provincia`
   ADD KEY `FKch1bpe1o4xybleki03vkp4vn2` (`departamento_id`);
 
 --
+-- Indices de la tabla `sugerencia`
+--
+ALTER TABLE `sugerencia`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKh4gn81v71sn1ffk1mfbfqe33h` (`usuario_id`);
+
+--
 -- Indices de la tabla `tipo_denuncia`
 --
 ALTER TABLE `tipo_denuncia`
@@ -665,13 +637,13 @@ ALTER TABLE `tipo_tramite`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `tramites`
+-- Indices de la tabla `tramite`
 --
-ALTER TABLE `tramites`
+ALTER TABLE `tramite`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FKi0hl9po658v8lxn02urfoc4oj` (`policia_id`),
-  ADD KEY `FKcmdmxilpwqivw1c77wad1p7r` (`tipo_tramite_id`),
-  ADD KEY `FKidm7xp7d30tit4vhpe2qbfs6r` (`usuario_id`);
+  ADD KEY `FKbc1ma81m0yruodajj2aoccj9l` (`policia_id`),
+  ADD KEY `FKj6nxvtq5mc9n9u08rct5m15e8` (`tipo_tramite_id`),
+  ADD KEY `FK6lg0s1ri0dgu25ufs39iq5ft1` (`usuario_id`);
 
 --
 -- Indices de la tabla `usuario`
@@ -696,31 +668,31 @@ ALTER TABLE `vinculo_parte_denunciada`
 -- AUTO_INCREMENT de la tabla `agraviado`
 --
 ALTER TABLE `agraviado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `denuncia`
 --
 ALTER TABLE `denuncia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `denunciado`
 --
 ALTER TABLE `denunciado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `denuncia_agraviado`
 --
 ALTER TABLE `denuncia_agraviado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `denuncia_denunciado`
 --
 ALTER TABLE `denuncia_denunciado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `departamento`
@@ -732,25 +704,25 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `distrito`
 --
 ALTER TABLE `distrito`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_civil`
 --
 ALTER TABLE `estado_civil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `gradopnp`
 --
 ALTER TABLE `gradopnp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `informacion_adicional`
 --
 ALTER TABLE `informacion_adicional`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `loginpnp`
@@ -762,13 +734,19 @@ ALTER TABLE `loginpnp`
 -- AUTO_INCREMENT de la tabla `policia`
 --
 ALTER TABLE `policia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `provincia`
 --
 ALTER TABLE `provincia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `sugerencia`
+--
+ALTER TABLE `sugerencia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_denuncia`
@@ -786,25 +764,25 @@ ALTER TABLE `tipo_identificacion`
 -- AUTO_INCREMENT de la tabla `tipo_tramite`
 --
 ALTER TABLE `tipo_tramite`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `tramites`
+-- AUTO_INCREMENT de la tabla `tramite`
 --
-ALTER TABLE `tramites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `tramite`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `vinculo_parte_denunciada`
 --
 ALTER TABLE `vinculo_parte_denunciada`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -880,12 +858,18 @@ ALTER TABLE `provincia`
   ADD CONSTRAINT `FKch1bpe1o4xybleki03vkp4vn2` FOREIGN KEY (`departamento_id`) REFERENCES `departamento` (`id`);
 
 --
--- Filtros para la tabla `tramites`
+-- Filtros para la tabla `sugerencia`
 --
-ALTER TABLE `tramites`
-  ADD CONSTRAINT `FKcmdmxilpwqivw1c77wad1p7r` FOREIGN KEY (`tipo_tramite_id`) REFERENCES `tipo_tramite` (`id`),
-  ADD CONSTRAINT `FKi0hl9po658v8lxn02urfoc4oj` FOREIGN KEY (`policia_id`) REFERENCES `policia` (`id`),
-  ADD CONSTRAINT `FKidm7xp7d30tit4vhpe2qbfs6r` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
+ALTER TABLE `sugerencia`
+  ADD CONSTRAINT `FKh4gn81v71sn1ffk1mfbfqe33h` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
+
+--
+-- Filtros para la tabla `tramite`
+--
+ALTER TABLE `tramite`
+  ADD CONSTRAINT `FK6lg0s1ri0dgu25ufs39iq5ft1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
+  ADD CONSTRAINT `FKbc1ma81m0yruodajj2aoccj9l` FOREIGN KEY (`policia_id`) REFERENCES `policia` (`id`),
+  ADD CONSTRAINT `FKj6nxvtq5mc9n9u08rct5m15e8` FOREIGN KEY (`tipo_tramite_id`) REFERENCES `tipo_tramite` (`id`);
 
 --
 -- Filtros para la tabla `usuario`

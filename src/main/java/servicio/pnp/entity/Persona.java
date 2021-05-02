@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
+import java.sql.Date;
 
 @MappedSuperclass
 public abstract class Persona {
@@ -30,8 +30,8 @@ public abstract class Persona {
     private String apellidoMaterno;
     /*--------------------------------------------*/
     @Column(nullable = true)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaNacimiento;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private Date  fechaNacimiento;
     /*-------------------------------------------*/
     @NotEmpty(message = "El campo sexo no puede quedar vacio")
     @Column(length = 25, nullable = false)
