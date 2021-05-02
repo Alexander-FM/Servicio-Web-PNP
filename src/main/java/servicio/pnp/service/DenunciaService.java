@@ -186,7 +186,9 @@ public class DenunciaService {
     }
 
     public GenericResponse save(final DenunciaConDetallesDTO dto) {
-        //return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(d.getDenuncia()));
+        Date date = new Date();
+        dto.getDenuncia().setFechaDenuncia(new java.sql.Date(date.getTime()));
+        dto.getDenuncia().setHoraDenuncia(new java.sql.Time(date.getTime()));
         this.repository.save(dto.getDenuncia());
 
         final Iterable<Agraviado> agraviados = this.aRepository.saveAll(dto.getAgraviados());

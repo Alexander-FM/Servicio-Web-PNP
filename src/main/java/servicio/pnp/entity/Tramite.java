@@ -16,7 +16,7 @@ public final class Tramite {
     private String codTramite;/*Una vez ingresado el trámite la mayor dará el cod-trámite por correo del usuario*/
     /*--------------------------------------*/
     @Column(nullable = false)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy",timezone = "America/Lima")
     private Date fechaTramite;/*Se rellenará automaticamente*/
     @Column(nullable = false)
     @JsonFormat(pattern = "hh:mm:ss")

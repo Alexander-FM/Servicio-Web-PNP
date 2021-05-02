@@ -13,7 +13,7 @@ public final class Denuncia {
     private int id;
     /*----------------------------------------------------*/
     @Column(nullable = false)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy",timezone = "America/Lima")
     private Date fechaDenuncia;
     @Column(nullable = false)
     @JsonFormat(pattern = "hh:mm:ss")
@@ -30,7 +30,7 @@ public final class Denuncia {
     private String referenciaDireccion;
     /*--------------------------------------------------------*/
     @Column(nullable = false)
-    @JsonFormat(pattern = "dd-MM-yyyyy")
+    @JsonFormat(pattern = "dd-MM-yyyyy",timezone = "America/Lima")
     private Date fechaHechos;
     @Column(nullable = false)
     @JsonFormat(pattern = "hh:mm:ss")

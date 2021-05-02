@@ -44,6 +44,9 @@ public class TramiteService {
     }
 
     public GenericResponse saveTramite(Tramite tr) {
+        Date date = new Date();
+        tr.setFechaTramite(new java.sql.Date(date.getTime()));
+        tr.setHoraTramite(new java.sql.Time(date.getTime()));
         Optional<Tramite> opt = this.repository.findById(tr.getId());
         int idf = opt.isPresent() ? opt.get().getId() : 0;
         //NUEVO REGISTRO

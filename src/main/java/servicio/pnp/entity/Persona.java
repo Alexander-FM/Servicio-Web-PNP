@@ -30,7 +30,7 @@ public abstract class Persona {
     private String apellidoMaterno;
     /*--------------------------------------------*/
     @Column(nullable = true)
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy",timezone = "America/Lima")
     private Date  fechaNacimiento;
     /*-------------------------------------------*/
     @NotEmpty(message = "El campo sexo no puede quedar vacio")
