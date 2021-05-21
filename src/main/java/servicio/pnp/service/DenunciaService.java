@@ -1,5 +1,9 @@
 package servicio.pnp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import servicio.pnp.entity.*;
@@ -25,6 +29,8 @@ public class DenunciaService {
     private final DenunciaDenunciadoService ddService;
     private final AgraviadoRepository aRepository;
     private final DenunciadoRepository dRepository;
+    @Autowired
+    SimpMessagingTemplate template;
 
     public DenunciaService(DenunciaRepository repository,
                            TipoDenunciaRepository tdRepository,
@@ -204,6 +210,7 @@ public class DenunciaService {
         }
         daService.save(das);
         ddService.save(dds);
+        template.convertAndSend("/topic/denuncia-noti", dto);
         return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, "denuncia guardada correctamente");
     }
 
