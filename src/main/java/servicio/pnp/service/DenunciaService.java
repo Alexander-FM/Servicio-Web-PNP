@@ -29,6 +29,7 @@ public class DenunciaService {
     private final DenunciaDenunciadoService ddService;
     private final AgraviadoRepository aRepository;
     private final DenunciadoRepository dRepository;
+    private final ComisariasRepository cRepository;
     @Autowired
     SimpMessagingTemplate template;
 
@@ -38,6 +39,7 @@ public class DenunciaService {
                            DenunciaAgraviadoService daService,
                            DenunciaDenunciadoService ddService,
                            AgraviadoRepository aRepository,
+                           ComisariasRepository cRepository,
                            DenunciadoRepository dRepository) {
         this.repository = repository;
         this.tdRepository = tdRepository;
@@ -46,6 +48,8 @@ public class DenunciaService {
         this.ddService = ddService;
         this.aRepository = aRepository;
         this.dRepository = dRepository;
+        this.cRepository = cRepository;
+
     }
 
     public GenericResponse<Iterable<Denuncia>> listar() {

@@ -46,6 +46,9 @@ public final class Denuncia {
     private Distrito distrito;
     /*------------------------------------------------------*/
     @OneToOne
+    private Comisarias comisaria;
+    /*------------------------------------------------------*/
+    @OneToOne
     private VinculoParteDenunciada vinculoParteDenunciada;/*Por ejemplo: si es laboral, familiar, otro.
     lo considero como una tabla a parte para mas a futuro no hacer la base de datos más pesada.*/
     /*--------------------------------------------------*/
@@ -164,5 +167,13 @@ public final class Denuncia {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Comisarias getComisaria() {
+        return comisaria;
+    }
+
+    public void setComisaria(Comisarias comisaria) {
+        this.comisaria = comisaria;
     }
 }
