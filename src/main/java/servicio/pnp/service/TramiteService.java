@@ -1,8 +1,12 @@
 package servicio.pnp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import servicio.pnp.entity.Tramite;
+import servicio.pnp.entity.dto.DenunciaConDetallesDTO;
+import servicio.pnp.repository.DenunciaRepository;
 import servicio.pnp.repository.TramitesRepository;
 import servicio.pnp.utils.GenericResponse;
 
@@ -17,9 +21,11 @@ import static servicio.pnp.utils.Global.*;
 @Service
 @Transactional
 public class TramiteService {
+    @Autowired
+    SimpMessagingTemplate template;
     private final TramitesRepository repository;
 
-    public TramiteService(TramitesRepository repository) {
+    public TramiteService(TramitesRepository repository, DenunciaRepository dRepository) {
         this.repository = repository;
     }
 
@@ -58,6 +64,7 @@ public class TramiteService {
             } else {
                 //GUARDA
                 tr.setId(idf);
+                template.convertAndSend("/topic/denuncia-noti", new DenunciaConDetallesDTO());
                 return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(tr));
             }
         } else {
