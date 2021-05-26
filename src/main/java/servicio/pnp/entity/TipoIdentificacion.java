@@ -10,7 +10,7 @@ public final class TipoIdentificacion {
     private int id;
 
     @NotEmpty (message = "El tipo de identificación no puede quedar vacia")
-    @Column(length = 10, nullable = false)
+    @Column(length = 20, nullable = false)
     private String tipoIdentificacion;
 
     @NotBlank(message = "El estado debe ser 1 ó 0")

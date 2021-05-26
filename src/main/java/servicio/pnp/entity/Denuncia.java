@@ -46,7 +46,7 @@ public final class Denuncia {
     private Distrito distrito;
     /*------------------------------------------------------*/
     @OneToOne
-    private Comisarias comisaria;
+    private Comisarias comisarias;
     /*------------------------------------------------------*/
     @OneToOne
     private VinculoParteDenunciada vinculoParteDenunciada;/*Por ejemplo: si es laboral, familiar, otro.
@@ -169,11 +169,11 @@ public final class Denuncia {
         this.usuario = usuario;
     }
 
-    public Comisarias getComisaria() {
-        return comisaria;
+    public Comisarias getComisarias() {
+        return comisarias;
     }
 
-    public void setComisaria(Comisarias comisaria) {
-        this.comisaria = comisaria;
+    public void setComisarias(Comisarias comisarias) {
+        this.comisarias = comisarias;
     }
 }
