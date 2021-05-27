@@ -150,6 +150,7 @@ public class TramiteService {
     }
 
     public GenericResponse<Tramite> save(Tramite t) {
+        template.convertAndSend("/topic/tramite-noti", t);
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(t));
     }
 
