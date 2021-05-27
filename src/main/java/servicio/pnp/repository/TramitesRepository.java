@@ -7,8 +7,8 @@ import servicio.pnp.entity.Tramite;
 import java.util.Optional;
 
 public interface TramitesRepository extends CrudRepository<Tramite, Integer> {
-    @Query(value = "SELECT T.* FROM tramite T WHERE DATE(T.fecha_tramite) BETWEEN :fechaI AND :fechaF AND DAYOFWEEK(T.fecha_tramite)=:diaS", nativeQuery = true)
-    Iterable<Tramite> obtenerContadorPorDiadelaSemanaEnunRangoDeFechas(int diaS, String fechaI, String fechaF);
+    @Query(value = "SELECT T.* FROM tramite T WHERE DATE(T.fecha_tramite) BETWEEN :fechaI AND :fechaF AND DAYOFWEEK(T.fecha_tramite)=:diaS AND COMISARIAS_ID=:idC", nativeQuery = true)
+    Iterable<Tramite> obtenerContadorPorDiadelaSemanaEnunRangoDeFechas(int diaS, String fechaI, String fechaF, int idC);
 
     @Query(value = "SELECT EXISTS(SELECT T.* FROM tramites T WHERE T.cod_tramite=:codtramite)", nativeQuery = true)
     int existsByName(String codtramite);

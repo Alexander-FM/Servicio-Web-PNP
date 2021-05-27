@@ -29,10 +29,10 @@ public class TramiteService {
         this.repository = repository;
     }
 
-    public GenericResponse<Map<String, Object>> reporteSemanal() {
+    public GenericResponse<Map<String, Object>> reporteSemanal(int idC) {
         Map<String, Object> data = new HashMap<>();
-        data.put("estaSemana", reporteS(false));
-        data.put("semanaPasada", reporteS(true));
+        data.put("estaSemana", reporteS(false, idC));
+        data.put("semanaPasada", reporteS(true, idC));
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, data);
     }
 
@@ -93,7 +93,7 @@ public class TramiteService {
         }
     }
 
-    public List<Integer> reporteS(boolean semanaPasada) {
+    public List<Integer> reporteS(boolean semanaPasada, int idC) {
         String fechaInicialS = "", fechaFinalS = "";
         LocalDateTime ldt = LocalDateTime.now();
         final Calendar actualCalendar = GregorianCalendar.from(ZonedDateTime.of(ldt, ZoneId.systemDefault()));
@@ -134,7 +134,7 @@ public class TramiteService {
         fechaFinalS = armarFechaDesdeCalendar(ff);
         List<Integer> data = new ArrayList<>();
         for (int i = 1; i <= 7; i++) {
-            data.add(((List<Tramite>) repository.obtenerContadorPorDiadelaSemanaEnunRangoDeFechas(i, fechaInicialS, fechaFinalS)).size());
+            data.add(((List<Tramite>) repository.obtenerContadorPorDiadelaSemanaEnunRangoDeFechas(i, fechaInicialS, fechaFinalS, idC)).size());
         }
         return data;
     }

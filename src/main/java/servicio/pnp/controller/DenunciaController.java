@@ -42,9 +42,9 @@ public class DenunciaController {
         return service.reporte();
     }
 
-    @GetMapping("/reporte2")
-    public GenericResponse<Map<String, Object>> reporte2() {
-        return service.generarReporte2();
+    @GetMapping("/reporte2/{idC}")
+    public GenericResponse<Map<String, Object>> reporte2(@PathVariable int idC) {
+        return service.generarReporte2(idC);
     }
 
     @GetMapping("reportefiltro")
@@ -53,9 +53,9 @@ public class DenunciaController {
                 Integer.parseInt(request.getParameter("seleccion")), request.getParameter("fechaInicial"), request.getParameter("fechaFinal"));
     }
 
-    @GetMapping("reporteAnual")
-    public GenericResponse<Map<String, Object>> reporteAnual() {
-        return service.reporteAnual();
+    @GetMapping("reporteAnual/{idC}")
+    public GenericResponse<Map<String, Object>> reporteAnual(@PathVariable int idC) {
+        return service.reporteAnual(idC);
     }
 
     @PostMapping

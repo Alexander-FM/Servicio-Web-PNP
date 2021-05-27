@@ -96,21 +96,21 @@ public class DenunciaService {
         return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, data);
     }
 
-    public GenericResponse<Map<String, Object>> generarReporte2() {
+    public GenericResponse<Map<String, Object>> generarReporte2(int idC) {
 
         Map<String, Object> data = new HashMap<>();
-        data.put("tipo", reportePorTipos());
-        data.put("vinculo", reportePorVinculo());
+        data.put("tipo", reportePorTipos(idC));
+        data.put("vinculo", reportePorVinculo(idC));
         return new GenericResponse(TIPO_AUTH, RPTA_OK, OPERACION_CORRECTA, data);
     }
 
-    private Map<String, Object> reportePorTipos() {
+    private Map<String, Object> reportePorTipos(int idC) {
         Iterable<TipoDenuncia> tiposDenuncia = tdRepository.findAll();
         List<String> tipos = new ArrayList<>();
         List<Integer> contador = new ArrayList<>();
         for (TipoDenuncia td : tiposDenuncia) {
             tipos.add(td.getTipoDenuncia());
-            Iterable<Denuncia> denuncias = repository.findByTipo(td.getId());
+            Iterable<Denuncia> denuncias = repository.findByTipoAndComisaria(td.getId(), idC);
             contador.add(((List<Denuncia>) denuncias).size());
         }
         Map<String, Object> porTipos = new HashMap<>();
@@ -119,13 +119,13 @@ public class DenunciaService {
         return porTipos;
     }
 
-    private Map<String, Object> reportePorVinculo() {
+    private Map<String, Object> reportePorVinculo(int idC) {
         Iterable<VinculoParteDenunciada> vinculosDenuncia = vpdRepository.findAll();
         List<String> vinculos = new ArrayList<>();
         List<Integer> contador = new ArrayList<>();
         for (VinculoParteDenunciada vpd : vinculosDenuncia) {
             vinculos.add(vpd.getNombre());
-            Iterable<Denuncia> denuncias = repository.findByVinculo(vpd.getId());
+            Iterable<Denuncia> denuncias = repository.findByVinculoAndComisaria(vpd.getId(), idC);
             contador.add(((List<Denuncia>) denuncias).size());
         }
         Map<String, Object> porVinculo = new HashMap<>();
@@ -170,14 +170,14 @@ public class DenunciaService {
         return null;
     }
 
-    public GenericResponse<Map<String, Object>> reporteAnual() {
+    public GenericResponse<Map<String, Object>> reporteAnual(int idC) {
         Map<String, Object> data = new HashMap<>();
-        data.put("esteAño", reporteA(false));
-        data.put("añoPasado", reporteA(true));
+        data.put("esteAño", reporteA(false, idC));
+        data.put("añoPasado", reporteA(true, idC));
         return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, data);
     }
 
-    private Object reporteA(boolean añoPasado) {
+    private Object reporteA(boolean añoPasado, int idC) {
         LocalDateTime ldt = LocalDateTime.now();
         final Calendar actualCalendar = GregorianCalendar.from(ZonedDateTime.of(ldt, ZoneId.systemDefault()));
         if (añoPasado) {
@@ -190,7 +190,7 @@ public class DenunciaService {
         List<Integer> data = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
 
-            data.add((((List<Denuncia>) repository.obtenerContadorPorMesesEnUnAÑoEspecifico(i, ldt.getYear())).size()));
+            data.add((((List<Denuncia>) repository.obtenerContadorPorMesesEnUnAÑoEspecifico(i, ldt.getYear(), idC)).size()));
         }
         return data;
     }

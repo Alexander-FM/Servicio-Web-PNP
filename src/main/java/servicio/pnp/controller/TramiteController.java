@@ -28,9 +28,9 @@ public class TramiteController {
         return this.service.devolverTramites(idUsu);
     }
 
-    @GetMapping("reportesemanal")
-    public GenericResponse<Map<String, Object>> reporteSemanal() {
-        return service.reporteSemanal();
+    @GetMapping("reportesemanal/{idC}")
+    public GenericResponse<Map<String, Object>> reporteSemanal(@PathVariable int idC) {
+        return service.reporteSemanal(idC);
     }
 
     @PostMapping

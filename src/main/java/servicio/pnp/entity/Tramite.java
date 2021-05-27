@@ -34,6 +34,8 @@ public final class Tramite {
     sus datos personales.*/
     @ManyToOne
     private Policia policia; /*Muchos Trámites puede atender un solo policía*/
+    @OneToOne
+    private Comisarias comisarias;
 
     @Column(length = 256)
     private String correo;
@@ -108,5 +110,13 @@ public final class Tramite {
 
     public void setPolicia(Policia policia) {
         this.policia = policia;
+    }
+
+    public Comisarias getComisarias() {
+        return comisarias;
+    }
+
+    public void setComisarias(Comisarias comisarias) {
+        this.comisarias = comisarias;
     }
 }

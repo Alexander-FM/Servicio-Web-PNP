@@ -13,14 +13,20 @@ public interface DenunciaRepository extends CrudRepository<Denuncia, Integer> {
     @Query("SELECT D FROM Denuncia D WHERE D.vinculoParteDenunciada.id=:idVpd")
     Iterable<Denuncia> findByVinculo(int idVpd);
 
+    @Query("SELECT D FROM Denuncia D WHERE D.tipoDenuncia.id=:idTd AND D.comisarias.id=:idC")
+    Iterable<Denuncia> findByTipoAndComisaria(int idTd, int idC);
+
+    @Query("SELECT D FROM Denuncia D WHERE D.vinculoParteDenunciada.id=:idVpd AND D.comisarias.id=:idC")
+    Iterable<Denuncia> findByVinculoAndComisaria(int idVpd, int idC);
+
     @Query("SELECT D FROM Denuncia D WHERE D.policia.id=:id")
     Iterable<Denuncia> findByPolicia(int id);
 
     @Query("SELECT D FROM Denuncia D WHERE D.estadoDenuncia=:ed")
     Iterable<Denuncia> findByEstado(boolean ed);
 
-    @Query(value = "SELECT D.* FROM Denuncia D WHERE  YEAR(DATE(D.fecha_denuncia))=:anio AND MONTH(DATE(D.fecha_denuncia))=:mes", nativeQuery = true)
-    Iterable<Denuncia> obtenerContadorPorMesesEnUnAÑoEspecifico(int mes, int anio);
+    @Query(value = "SELECT D.* FROM Denuncia D WHERE  YEAR(DATE(D.fecha_denuncia))=:anio AND MONTH(DATE(D.fecha_denuncia))=:mes AND COMISARIAS_ID=:idC", nativeQuery = true)
+    Iterable<Denuncia> obtenerContadorPorMesesEnUnAÑoEspecifico(int mes, int anio, int idC);
 
     @Query(value = "SELECT EXISTS(SELECT D.* FROM denuncia D WHERE D.cod_denuncia=:codDenuncia)", nativeQuery = true)
     int existsByName(String codDenuncia);
