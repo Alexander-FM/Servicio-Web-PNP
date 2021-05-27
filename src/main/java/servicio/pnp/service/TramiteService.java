@@ -64,7 +64,7 @@ public class TramiteService {
             } else {
                 //GUARDA
                 tr.setId(idf);
-                template.convertAndSend("/topic/denuncia-noti", new DenunciaConDetallesDTO());
+                template.convertAndSend("/topic/tramite-noti", tr);
                 return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(tr));
             }
         } else {
