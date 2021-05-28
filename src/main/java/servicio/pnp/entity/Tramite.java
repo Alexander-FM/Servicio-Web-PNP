@@ -39,6 +39,14 @@ public final class Tramite {
 
     @Column(length = 256)
     private String correo;
+    @Column(length = 9)
+    private String telefono;
+    @Column(length = 500)
+    private String motivo_denuncia_policial;
+    @Column(length = 500)
+    private String observaciones;
+    @Column(length = 25)
+    private String solicitante;
 
     public String getCorreo() {
         return correo;
@@ -118,5 +126,37 @@ public final class Tramite {
 
     public void setComisarias(Comisarias comisarias) {
         this.comisarias = comisarias;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getMotivo_denuncia_policial() {
+        return motivo_denuncia_policial;
+    }
+
+    public void setMotivo_denuncia_policial(String motivo_denuncia_policial) {
+        this.motivo_denuncia_policial = motivo_denuncia_policial;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getSolicitante() {
+        return solicitante;
+    }
+
+    public void setSolicitante(String solicitante) {
+        this.solicitante = solicitante;
     }
 }
