@@ -23,9 +23,19 @@ public class TramiteController {
         return service.list();
     }
 
+    @GetMapping("/porComisaria/{idC}")
+    public GenericResponse<Iterable<Tramite>> list(@PathVariable int idC) {
+        return service.listarbyComisaria(idC);
+    }
+
     @GetMapping("/misTramites/{idUsu}")
-    public GenericResponse<Iterable<Tramite>> devolverMisTramites(@PathVariable int idUsu){
+    public GenericResponse<Iterable<Tramite>> devolverMisTramites(@PathVariable int idUsu) {
         return this.service.devolverTramites(idUsu);
+    }
+
+    @GetMapping("/listarTotalTramitesPorComisaria/{idC}")
+    public GenericResponse<Integer> listarTramitesContadorPorComisaria(@PathVariable int idC) {
+        return this.service.listarContadorTramites(idC);
     }
 
     @GetMapping("reportesemanal/{idC}")
@@ -55,7 +65,7 @@ public class TramiteController {
     }
 
     @GetMapping("/consultarTramite/{codTramite}/{idUsu}")
-    public GenericResponse<Tramite> devolverMisTramites(@PathVariable String codTramite, @PathVariable int idUsu){
+    public GenericResponse<Tramite> devolverMisTramites(@PathVariable String codTramite, @PathVariable int idUsu) {
         return this.service.consultarTramite(codTramite, idUsu);
     }
 
@@ -63,6 +73,11 @@ public class TramiteController {
     public GenericResponse<Iterable<Tramite>> reporteFiltro(HttpServletRequest request) {
         return service.generarReporteFiltroTramite(Integer.parseInt(request.getParameter("filtro")),
                 Integer.parseInt(request.getParameter("seleccion")), request.getParameter("fechaInicial"), request.getParameter("fechaFinal"));
+    }
+
+    @GetMapping("/listarCTramitesPendientePorComisaria/{idC}")
+    public GenericResponse<Integer> listarCTramitesPendientes(@PathVariable int idC) {
+        return this.service.listarContadorTramitesPendientes(idC);
     }
 
 }

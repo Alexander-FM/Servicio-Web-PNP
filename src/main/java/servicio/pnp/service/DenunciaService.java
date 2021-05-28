@@ -52,8 +52,16 @@ public class DenunciaService {
 
     }
 
-    public GenericResponse<Iterable<Denuncia>> listar() {
-        return new GenericResponse<Iterable<Denuncia>>(OPERACION_CORRECTA, RPTA_OK, "detalle encontrado", this.repository.findAll());
+    public GenericResponse<Iterable<Denuncia>> listar(int idC) {
+        return new GenericResponse<Iterable<Denuncia>>(OPERACION_CORRECTA, RPTA_OK, "detalle encontrado", this.repository.listDenunciasByComisarias(idC));
+    }
+
+    public GenericResponse<Integer> listarContadorDenuncias(int idC) {
+        return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "listado encontrado", this.repository.devolverDenunciasPorComisaria(idC));
+    }
+
+    public GenericResponse<Integer> listarContadorDenunciasPendientes(int idC) {
+        return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "listado encontrado", this.repository.devolverDenunciasPendientesPorComisaria(idC));
     }
 
     public GenericResponse<List<DenunciaConDetallesDTO>> devolvermisDenuncias(int idUsu) {

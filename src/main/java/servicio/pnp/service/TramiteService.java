@@ -187,4 +187,15 @@ public class TramiteService {
     }
 
 
+    public GenericResponse<Iterable<Tramite>> listarbyComisaria(int idC) {
+        return new GenericResponse<>(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, repository.listByComisaria(idC));
+    }
+
+    public GenericResponse<Integer> listarContadorTramites(int idC) {
+        return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "listado encontrado", this.repository.devolverTramitesPorComisaria(idC));
+    }
+
+    public GenericResponse<Integer> listarContadorTramitesPendientes(int idC) {
+        return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "listado encontrado", this.repository.devolverTramitesPendientesPorComisaria(idC));
+    }
 }

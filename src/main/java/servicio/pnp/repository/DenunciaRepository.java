@@ -10,6 +10,15 @@ public interface DenunciaRepository extends CrudRepository<Denuncia, Integer> {
     @Query("SELECT D FROM Denuncia D WHERE D.tipoDenuncia.id=:idTd")
     Iterable<Denuncia> findByTipo(int idTd);
 
+    @Query(value = "SELECT COUNT(*) FROM denuncia WHERE comisarias_id=:idC", nativeQuery = true)
+    int devolverDenunciasPorComisaria(int idC);
+
+    @Query(value = "SELECT COUNT(*) FROM denuncia WHERE comisarias_id=:idC AND estado_denuncia=0", nativeQuery = true)
+    int devolverDenunciasPendientesPorComisaria(int idC);
+
+    @Query("SELECT D FROM Denuncia D WHERE D.comisarias.id=:idC")
+    Iterable<Denuncia> listDenunciasByComisarias(int idC);
+
     @Query("SELECT D FROM Denuncia D WHERE D.vinculoParteDenunciada.id=:idVpd")
     Iterable<Denuncia> findByVinculo(int idVpd);
 

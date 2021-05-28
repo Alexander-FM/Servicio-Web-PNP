@@ -13,7 +13,7 @@ public final class Denuncia {
     private int id;
     /*----------------------------------------------------*/
     @Column(nullable = false)
-    @JsonFormat(pattern = "dd-MM-yyyy",timezone = "America/Lima")
+    @JsonFormat(pattern = "dd-MM-yyyy", timezone = "America/Lima")
     private Date fechaDenuncia;
     @Column(nullable = false)
     @JsonFormat(pattern = "hh:mm:ss")
@@ -30,7 +30,7 @@ public final class Denuncia {
     private String referenciaDireccion;
     /*--------------------------------------------------------*/
     @Column(nullable = false)
-    @JsonFormat(pattern = "dd-MM-yyyyy",timezone = "America/Lima")
+    @JsonFormat(pattern = "dd-MM-yyyyy", timezone = "America/Lima")
     private Date fechaHechos;
     @Column(nullable = false)
     @JsonFormat(pattern = "hh:mm:ss")
@@ -56,6 +56,10 @@ public final class Denuncia {
     private Policia policia;
     @ManyToOne
     private Usuario usuario;
+    @Column(length = 100)
+    private String latitud;
+    @Column(length = 100)
+    private String longitud;
 
     public int getId() {
         return id;
@@ -175,5 +179,21 @@ public final class Denuncia {
 
     public void setComisarias(Comisarias comisarias) {
         this.comisarias = comisarias;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
     }
 }

@@ -22,9 +22,19 @@ public class DenunciaController {
         this.ddService = ddService;
     }
 
-    @GetMapping
-    public GenericResponse<Iterable<Denuncia>> listar() {
-        return this.service.listar();
+    @GetMapping("/porComisaria/{idC}")
+    public GenericResponse<Iterable<Denuncia>> listar(@PathVariable int idC) {
+        return this.service.listar(idC);
+    }
+
+    @GetMapping("/listarTotalDenunciasPorComisaria/{idC}")
+    public GenericResponse<Integer> listarDenunciasContadorPorComisaria(@PathVariable int idC) {
+        return this.service.listarContadorDenuncias(idC);
+    }
+
+    @GetMapping("/listarCDenunciasPendientePorComisaria/{idC}")
+    public GenericResponse<Integer> listarCDenunciasPendientes(@PathVariable int idC) {
+        return this.service.listarContadorDenunciasPendientes(idC);
     }
 
     @GetMapping("/misDenuncias/{idUsu}")
@@ -59,7 +69,7 @@ public class DenunciaController {
     }
 
     @PostMapping
-    public GenericResponse save( @RequestBody DenunciaConDetallesDTO d) {
+    public GenericResponse save(@RequestBody DenunciaConDetallesDTO d) {
         return this.service.save(d);
     }
 

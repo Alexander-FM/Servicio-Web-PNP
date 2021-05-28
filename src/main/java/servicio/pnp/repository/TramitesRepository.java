@@ -30,4 +30,13 @@ public interface TramitesRepository extends CrudRepository<Tramite, Integer> {
 
     @Query("SELECT T FROM Tramite T WHERE T.codTramite=:codTramite AND T.usuario.id=:idUsu")
     Optional<Tramite> consultarTramites(String codTramite, int idUsu);
+
+    @Query("SELECT T FROM Tramite T WHERE T.comisarias.id=:idC")
+    Iterable<Tramite> listByComisaria(int idC);
+
+    @Query(value = "SELECT COUNT(*) FROM tramite WHERE comisarias_id=:idC", nativeQuery = true)
+    int devolverTramitesPorComisaria(int idC);
+
+    @Query(value = "SELECT COUNT(*) FROM tramite WHERE comisarias_id=:idC AND estado_tramite=0", nativeQuery = true)
+    int devolverTramitesPendientesPorComisaria(int idC);
 }
