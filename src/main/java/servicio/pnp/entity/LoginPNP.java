@@ -22,6 +22,8 @@ public final class LoginPNP{
     /*-------------------------------------------------*/
     @OneToOne
     private Policia policia;
+    @OneToOne
+    private Comisarias comisarias;
 
     public int getId() {
         return id;
@@ -62,5 +64,13 @@ public final class LoginPNP{
 
     public void setPolicia(Policia policia) {
         this.policia = policia;
+    }
+
+    public Comisarias getComisarias() {
+        return comisarias;
+    }
+
+    public void setComisarias(Comisarias comisarias) {
+        this.comisarias = comisarias;
     }
 }

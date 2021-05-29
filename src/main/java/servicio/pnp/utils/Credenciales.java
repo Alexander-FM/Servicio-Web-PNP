@@ -3,6 +3,7 @@ package servicio.pnp.utils;
 public class Credenciales {
     private String cp;
     private String cl;
+
     public Credenciales(){}
 
     public String getCp() {

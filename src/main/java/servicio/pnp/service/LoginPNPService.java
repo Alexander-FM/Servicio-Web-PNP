@@ -37,7 +37,7 @@ public class LoginPNPService {
             response.setBody(optUsuario.get());
         } else {
             response.setRpta(RPTA_WARNING);
-            response.setMessage("Datos de ingreso incorrectos o policia inactivo, comuníquese a la central para activar su vigencia. GRACIAS");
+            response.setMessage("Credenciales Incorrectas o policía inactivo, comuníquese a la central para activar su vigencia. GRACIAS");
             response.setBody(false);
         }
         return response;
