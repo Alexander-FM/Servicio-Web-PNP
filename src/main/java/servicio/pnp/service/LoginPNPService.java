@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import servicio.pnp.entity.GradoPNP;
 import servicio.pnp.entity.LoginPNP;
 import servicio.pnp.entity.Policia;
+import servicio.pnp.entity.Usuario;
 import servicio.pnp.repository.LoginPNPRepository;
 import servicio.pnp.utils.GenericResponse;
 import sun.rmi.runtime.Log;
@@ -21,6 +22,7 @@ public class LoginPNPService {
     public LoginPNPService(LoginPNPRepository repository) {
         this.repository = repository;
     }
+
     //LISTAR USUARIO
     public GenericResponse<Iterable<LoginPNP>> listAll() {
         return new GenericResponse<Iterable<LoginPNP>>(OPERACION_CORRECTA, RPTA_OK, "detalle encontrado", this.repository.findAll());
@@ -42,32 +44,34 @@ public class LoginPNPService {
         }
         return response;
     }
+
     //GUARDAR Y ACTUALIZAR USUARIO
-    public GenericResponse save(LoginPNP lp){
+    public GenericResponse save(LoginPNP lp) {
         Optional<LoginPNP> opt = this.repository.findById(lp.getId());
         int idf = opt.isPresent() ? opt.get().getId() : 0;
         //NUEVO REGISTRO
-        if(idf == 0){
-            if(repository.existsByName(lp.getCodigoPolicial().trim(), lp.getClave().trim()) == 1){
+        if (idf == 0) {
+            if (repository.existsByName(lp.getCodigoPolicial().trim(), lp.getClave().trim()) == 1) {
                 return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "Lo sentimos: " +
-                        "Ya existe un loginPNP con ese mismo código policial y/o clave" );
-            }else{
+                        "Ya existe un loginPNP con ese mismo código policial y/o clave");
+            } else {
                 //GUARDA
                 lp.setId(idf);
                 return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(lp));
             }
-        }else{
+        } else {
             //ACTUALIZAR REGISTRO
-            if(repository.existByNameForUpdate(lp.getCodigoPolicial().trim(), lp.getClave().trim(), lp.getId()) == 1){
+            if (repository.existByNameForUpdate(lp.getCodigoPolicial().trim(), lp.getClave().trim(), lp.getId()) == 1) {
                 return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "Error: Ya existe un" +
                         "loginPNP con ese mismo código policial y/o clave");
-            }else{
+            } else {
                 //ACTUALIZA
                 lp.setId(idf);
                 return new GenericResponse(TIPO_DATA, RPTA_OK, OPERACION_CORRECTA, this.repository.save(lp));
             }
         }
     }
+
     //DESACTIVAR O ACTIVAR EL ESTADO DEL USUARIO
     public GenericResponse delete(int id) {
         Optional<LoginPNP> opt = this.repository.findById(id);
@@ -87,6 +91,7 @@ public class LoginPNPService {
                     OPERACION_INCORRECTA, "El usuario que desea eliminar no existe");
         }
     }
+
     //ELIMINAR USUARIO PARA SIEMPRE
     public GenericResponse deleteforAlways(int id) {
         Optional<LoginPNP> opt = this.repository.findById(id);
@@ -97,18 +102,36 @@ public class LoginPNPService {
             return new GenericResponse(TIPO_RESULT, RPTA_WARNING, OPERACION_INCORRECTA, "El usuario que desea eliminar no existe");
         }
     }
+
     //ENCONTRAR USUARIO POR ID
     public GenericResponse find(int id) {
         Optional<LoginPNP> opt = this.repository.findById(id);
-        if(opt.isPresent()){
+        if (opt.isPresent()) {
             return new GenericResponse(TIPO_RESULT,
                     RPTA_OK,
-                    OPERACION_CORRECTA,opt.get());
-        }else{
+                    OPERACION_CORRECTA, opt.get());
+        } else {
             return new GenericResponse(TIPO_RESULT,
                     RPTA_WARNING,
                     OPERACION_INCORRECTA, "El usuario no existe en la Base de Datos");
         }
+    }
+
+    public GenericResponse<Boolean> existsByCp(String cp) {
+        return new GenericResponse(TIPO_RESULT, RPTA_OK, OPERACION_CORRECTA, this.repository.existsByCp(cp) == 1);
+    }
+
+    public GenericResponse<LoginPNP> changePasswordLoginPNP(String codigoP, String clave) {
+        Optional<LoginPNP> optUsuario = repository.findByCodigoPolicial(codigoP);
+        if (optUsuario.isPresent()) {
+            LoginPNP loginPNP = optUsuario.get();
+            loginPNP.setClave(clave);
+            return new GenericResponse<LoginPNP>(TIPO_RESULT,
+                    RPTA_OK,
+                    "Contraseña cambiada. Ahora puedes volver a iniciar sesión",
+                    this.repository.save(loginPNP));
+        }
+        return new GenericResponse(TIPO_RESULT, RPTA_ERROR, OPERACION_ERRONEA, new LoginPNP());
     }
 }
 

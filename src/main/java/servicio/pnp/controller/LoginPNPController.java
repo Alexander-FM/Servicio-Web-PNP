@@ -3,10 +3,12 @@ package servicio.pnp.controller;
 import servicio.pnp.entity.GradoPNP;
 import servicio.pnp.entity.LoginPNP;
 import servicio.pnp.entity.Policia;
+import servicio.pnp.entity.Usuario;
 import servicio.pnp.service.LoginPNPService;
 import servicio.pnp.utils.*;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 //@CrossOrigin(origins = "*", allowCredentials = "")
@@ -56,5 +58,14 @@ public class LoginPNPController {
         return this.service.deleteforAlways(id);
     }
 
+    @PostMapping("/changePasswordLoginPnp")
+    public GenericResponse<LoginPNP> changePassword(HttpServletRequest request){
+        return this.service.changePasswordLoginPNP(request.getParameter("cp"), request.getParameter("clave"));
+    }
+
+    @PostMapping("/eByCp")
+    public GenericResponse existsByCp(HttpServletRequest request) {
+        return this.service.existsByCp(request.getParameter("codigoPolicial"));
+    }
 
 }
