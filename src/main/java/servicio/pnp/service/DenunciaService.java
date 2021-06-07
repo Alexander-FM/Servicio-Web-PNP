@@ -73,6 +73,17 @@ public class DenunciaService {
         return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", dtos);
     }
 
+    public GenericResponse<DenunciaConDetallesDTO> devolverDenuncia(int idDenuncia) {
+        final DenunciaConDetallesDTO dto = new DenunciaConDetallesDTO();
+        final Denuncia denuncia = repository.findById(idDenuncia).orElse(null);
+        if(denuncia != null){
+            dto.setDenuncia(denuncia);
+            dto.setAgraviados(aRepository.findByDenunciaId(idDenuncia));
+            dto.setDenunciados(dRepository.findByDenunciaId(idDenuncia));
+        }
+        return new GenericResponse(OPERACION_CORRECTA, RPTA_OK, "Todo muy bien", dto);
+    }
+
     public GenericResponse<DenunciaConDetallesDTO> consultarDenuncia(String codDenuncia, int idUsu) {
         final DenunciaConDetallesDTO dto;
         final Denuncia d = repository.consultarDenuncia(codDenuncia, idUsu).orElse(new Denuncia());

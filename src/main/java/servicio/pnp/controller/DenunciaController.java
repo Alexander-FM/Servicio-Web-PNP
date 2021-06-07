@@ -42,6 +42,11 @@ public class DenunciaController {
         return this.service.devolvermisDenuncias(idUsu);
     }
 
+    @GetMapping("/devolverDenuncia/{idDenuncia}")
+    public GenericResponse devolverDenuncia(@PathVariable int idDenuncia) {
+        return this.service.devolverDenuncia(idDenuncia);
+    }
+
     @GetMapping("/detalle/{idD}")
     public GenericResponse BuscarDetalles(@PathVariable int idD) {
         return service.getDetalles(idD);
